@@ -11,7 +11,7 @@ router.get('/gallery', controller.getAll);
 router.get('/:id', controller.get);
 
 // POST Method
-router.post('/:id', controller.insert);
+router.post('/', controller.insert);
 router.post('/generate-fake-data', fakeDataGenerator.generateFakeAccount);
 
 // PUT Method
