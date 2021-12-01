@@ -12,8 +12,10 @@ const discountService = require("../discount/discountService");
 exports.get = async (req, res) => {
   try {
     const product = await service.get(req.params.id);
+    const offers = await offerService.getAll();
+    const discounts = await discountService.getAll();
     // res.json(product);
-    res.render('detail', { product });
+    res.render('editproduct', { product , offers,  discounts});
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -74,8 +76,8 @@ exports.getAll = async (req, res) => {
 exports.insert = async (req, res) => {
   try {
     const newProduct = await service.insert(req.body);
-    // res.status(201).json(newProduct);
-    res.render('addproducts');
+    res.status(201).json(newProduct);
+    // res.render('addproducts');
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -92,7 +94,7 @@ exports.update = async (req, res) => {
   try {
     const updatedProduct = await service.update(req.params.id, req.body);
     // res.json(updatedProduct);
-    res.render('editproducts');
+    res.render('editproducts', {updatedProduct});
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
