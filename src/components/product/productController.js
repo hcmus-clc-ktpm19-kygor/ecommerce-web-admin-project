@@ -22,8 +22,8 @@ exports.get = async (req, res) => {
 exports.paging = async (req, res) => {
   try {
     const products = await service.paging(req.query.page);
-    res.json(products);
-    // res.render('products', { products });
+    // res.json(products);
+    res.render('products', { products });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -39,7 +39,8 @@ exports.renderAddProductPage = async (req, res) => {
   try {
     const offers = await offerService.getAll();
     const discounts = await discountService.getAll();
-    res.json({ offers, discounts });
+    // res.json({ offers, discounts });
+    res.render('addproduct', { offers,  discounts});
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

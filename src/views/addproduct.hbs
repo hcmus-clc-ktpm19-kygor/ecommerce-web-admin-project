@@ -126,17 +126,17 @@
               <div class="form-group">
                 <label for="inputDiscount">Mã khuyến mãi</label>
                 <select class="custom-select rounded-0" id="inputDiscount">
-                  <option>Value 1</option>
-                  <option>Value 2</option>
-                  <option>Value 3</option>
+                  {{#each discounts}}
+                  <option>Phần trăm giảm giá: {{this.rate}}</option>
+                  {{/each}}
                 </select>
               </div>
               <div class="form-group">
                 <label for="inputOffer">Mã ưu đãi</label>
                 <select class="custom-select rounded-0" id="inputOffer">
-                  <option>Value 1</option>
-                  <option>Value 2</option>
-                  <option>Value 3</option>
+                  {{#each offers}}
+                  <option>{{this.content}}</option>
+                  {{/each}}
                 </select>
               </div>
             </div>
