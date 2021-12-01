@@ -1,4 +1,6 @@
 const service = require('./productService');
+const offerService = require("../offer/offerService");
+const discountService = require("../discount/discountService");
 
 /**
  * Lay 1 san pham len bang id
@@ -20,8 +22,24 @@ exports.get = async (req, res) => {
 exports.paging = async (req, res) => {
   try {
     const products = await service.paging(req.query.page);
-    // res.json(products);
-    res.render('products', { products });
+    res.json(products);
+    // res.render('products', { products });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}
+
+/**
+ * Lay tat ca offer va discount tu database
+ * @param req request
+ * @param res response
+ * @returns {Promise<void>}
+ */
+exports.renderAddProductPage = async (req, res) => {
+  try {
+    const offers = await offerService.getAll();
+    const discounts = await discountService.getAll();
+    res.json({ offers, discounts });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

@@ -13,7 +13,7 @@ exports.get = async (id) => {
   }
 };
 
-exports.getAll = async (req, res) => {
+exports.getAll = async () => {
   try {
     return await model.find();
   } catch (err) {
