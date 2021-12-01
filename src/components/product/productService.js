@@ -26,7 +26,7 @@ exports.get = async (id) => {
  */
 exports.paging = async (page) => {
   try {
-    let perPage = 6; // số lượng sản phẩm xuất hiện trên 1 page
+    let perPage = 9; // số lượng sản phẩm xuất hiện trên 1 page
     page = page || 1;
 
     return await model

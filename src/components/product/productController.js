@@ -10,7 +10,8 @@ const service = require('./productService');
 exports.get = async (req, res) => {
   try {
     const product = await service.get(req.params.id);
-    res.json(product);
+    // res.json(product);
+    res.render('detail', { product });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -19,7 +20,8 @@ exports.get = async (req, res) => {
 exports.paging = async (req, res) => {
   try {
     const products = await service.paging(req.query.page);
-    res.json(products);
+    // res.json(products);
+    res.render('products', { products });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -35,7 +37,9 @@ exports.paging = async (req, res) => {
 exports.getAll = async (req, res) => {
   try {
     const products = await service.getAll();
-    res.json(products);
+    // res.json(products);
+    // res.render('products', { products });
+    res.render('gallery', { products });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -51,7 +55,8 @@ exports.getAll = async (req, res) => {
 exports.insert = async (req, res) => {
   try {
     const newProduct = await service.insert(req.body);
-    res.status(201).json(newProduct);
+    // res.status(201).json(newProduct);
+    res.render('addproducts');
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -67,7 +72,8 @@ exports.insert = async (req, res) => {
 exports.update = async (req, res) => {
   try {
     const updatedProduct = await service.update(req.params.id, req.body);
-    res.json(updatedProduct);
+    // res.json(updatedProduct);
+    res.render('editproducts');
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

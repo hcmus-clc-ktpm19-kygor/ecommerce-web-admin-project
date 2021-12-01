@@ -6,16 +6,17 @@ const fakeDataGenerator = require('../FakeGenerator/FakeAccountGenerator');
 // GET Method
 // Paging
 router.get('/', controller.paging);
-router.get('/page', controller.paging);
+router.get('/gallery', controller.getAll);
 // Get 1 product
 router.get('/:id', controller.get);
 
 // POST Method
-router.post('/', controller.insert);
+router.post('/add', controller.insert);
 router.post('/generate-fake-data', fakeDataGenerator.generateFakeAccount);
 
 // PUT Method
-router.put('/:id', controller.update);
+// router.put('/update/:id', controller.update);
+router.put('/update', controller.update);
 
 // DELETE Method
 router.delete('/:id', controller.delete);

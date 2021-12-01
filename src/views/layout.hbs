@@ -1,235 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- basic -->
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- mobile metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-  <!-- site metas -->
-  <title>Eflyer</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <!-- bootstrap css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  <!-- style css -->
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <!-- Responsive-->
-  <link rel="stylesheet" type="text/css" href="css/responsive.css">
-  <!-- fevicon -->
-  <!--<link rel="icon" href="images/fevicon.png" type="image/gif" />-->
-  <!-- Scrollbar Custom CSS -->
-  <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.min.css">
-  <!-- Tweaks for older IEs-->
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-  <!-- fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-  <!-- font awesome -->
-  <link rel="stylesheet" type="text/css"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!--  -->
-  <!-- owl stylesheets -->
-  <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext"
-    rel="stylesheet">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesoeet" href="css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-    media="screen">
-  <!-- Icon -->
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <title>Aroma Shop | Menu</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/css/adminlte.css">
 </head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
 
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="../public/images/favicon.ico" alt="AdminLTELogo" height="60" width="60">
+  </div>
 
-<body>
-  <!-- banner bg main start -->
-  <div class="banner_bg_main">
-    <!-- header top section start -->
-    <div class="container">
-      <div class="header_section_top">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="custom_menu">
-              <ul>
-                <li><a href="#">Best Sellers</a></li>
-                <li><a href="#">Gift Ideas</a></li>
-                <li><a href="#">New Releases</a></li>
-                <li><a href="#">Today's Deals</a></li>
-                <li><a href="#">Customer Service</a></li>
-              </ul>
-            </div>
-          </div>
+  <!-- Navbar -->
+  <nav class="main-header navbar-white navbar navbar-expand">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="/" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="product-list.html" class="brand-link">
+      <img src="../public/images/favicon.ico" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Aroma</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Nguyễn Đức Nam</a>
         </div>
       </div>
-    </div>
-    <!-- header top section start -->
-    <!-- logo section start -->
-    <div class="logo_section">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="logo"><a href="/"><img src="images/logo.png"></a></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- logo section end -->
-    <!-- header section start -->
-    <div class="header_section">
-      <div class="container">
-        <div class="containt_main">
-          <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="/">Home</a>
-            <a href="/asus">Asus</a>
-            <a href="/dell">Dell</a>
-            <a href="/login">Login</a>
-          </div>
-          <span class="toggle_icon" onclick="openNav()"><img src="images/toggle-icon.png"></span>
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="/asus">Asus</a>
-              <a class="dropdown-item" href="/dell">Dell</a>
-            </div>
-          </div>
-          <div class="main">
-            <!-- Another variation with a button -->
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search this blog">
-              <div class="input-group-append">
-                <button class="btn btn-secondary" type="button"
-                  style="background-color: #f26522; border-color:#f26522 ">
-                  <i class="fa fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="header_box">
-            <div class="lang_box ">
-              <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
-                <img src="images/flag-uk.png" alt="flag" class="mr-2 " title="United Kingdom"> English <i
-                  class="fa fa-angle-down ml-2" aria-hidden="true"></i>
-              </a>
-              <div class="dropdown-menu ">
-                <a href="#" class="dropdown-item">
-                  <img src="images/flag-france.png" class="mr-2" alt="flag">
-                  French
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-bars"></i>
+              <p>
+                Thống kê
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/products" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách sản phẩm</p>
                 </a>
-              </div>
-            </div>
-            <div class="login_menu">
-              <ul>
-                <li><a href="#">
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    <span class="padding_10">Cart</span></a>
-                </li>
-                <li><a href="/login">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span class="padding_10">Login</span></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- header section end -->
-    <!-- banner section start -->
-    <div class="banner_section layout_padding">
-      <div class="container">
-        <div id="my_slider" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="row">
-                <div class="col-sm-12">
-                  <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                  <div class="buynow_bt"><a href="#">Buy Now</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="row">
-                <div class="col-sm-12">
-                  <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                  <div class="buynow_bt"><a href="#">Buy Now</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="row">
-                <div class="col-sm-12">
-                  <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                  <div class="buynow_bt"><a href="#">Buy Now</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-          </a>
-          <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <!-- banner section end -->
-  </div>
-  <!-- banner bg main end -->
-  {{{body}}}
-  <!-- footer section start -->
-  <div class="footer_section layout_padding">
-    <div class="container">
-      <div class="footer_logo"><a href="/"><img src="images/footer-logo.png"></a></div>
-      <div class="input_bt">
-        <input type="text" class="mail_bt" placeholder="Your Email" name="Your Email">
-        <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
-      </div>
-      <div class="footer_menu">
-        <ul>
-          <li><a href="#">Best Sellers</a></li>
-          <li><a href="#">Gift Ideas</a></li>
-          <li><a href="#">New Releases</a></li>
-          <li><a href="#">Today's Deals</a></li>
-          <li><a href="#">Customer Service</a></li>
+              </li>
+              <li class="nav-item">
+                <a href="/order" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách đơn hàng</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/products/gallery" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Hình ảnh sản phẩm
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/products/add" class="nav-link">
+              <i class="nav-icon far fa-plus-square"></i>
+              <p>
+                Thêm sản phẩm
+              </p>
+            </a>
+          </li>
         </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  {{{body}}}
+
+  <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">EFlyer.inc</a>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 1.0.0-rc
       </div>
-      <div class="location_main">Help Line Number : <a href="#">+1 1800 1200 1200</a></div>
-    </div>
+    </footer>
   </div>
-  <!-- footer section end -->
-  <!-- copyright section start -->
-  <div class="copyright_section">
-    <div class="container">
-      <p class="copyright_text">© 2020 All Rights Reserved. Design by <a href="https://html.design">Free html
-          Templates</a></p>
-    </div>
-  </div>
-  <!-- copyright section end -->
-  <!-- Javascript files-->
-  <script src="js/jquery.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/jquery-3.0.0.min.js"></script>
-  <script src="js/plugin.js"></script>
-  <!-- sidebar -->
-  <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-  <script src="js/custom.js"></script>
+  <!-- ./wrapper -->
+
+  <!-- REQUIRED SCRIPTS -->
+  <!-- jQuery -->
+  <script src="/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- overlayScrollbars -->
+  <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <!-- Ekko Lightbox -->
+  <script src="/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+  <!-- Filterizr-->
+  <script src="/plugins/filterizr/jquery.filterizr.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/js/adminlte.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/js/demo.js"></script>
+
+  <!-- PAGE PLUGINS -->
+  <!-- jQuery Mapael -->
+  <script src="/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+  <script src="/plugins/raphael/raphael.min.js"></script>
+  <script src="/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+  <script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+  <!-- ChartJS -->
+  <script src="/plugins/chart.js/Chart.min.js"></script>
+  <!-- DataTables  & Plugins -->
+  <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+  <script src="/plugins/jszip/jszip.min.js"></script>
+  <script src="/plugins/pdfmake/pdfmake.min.js"></script>
+  <script src="/plugins/pdfmake/vfs_fonts.js"></script>
+  <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <!-- Page specific script -->
   <script>
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-    }
-
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-    }
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "paging": true, "searching": true, "ordering": false, "info": true,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
   </script>
-</body>
-
+  </body>
 </html>

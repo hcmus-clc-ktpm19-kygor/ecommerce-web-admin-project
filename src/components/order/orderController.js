@@ -12,7 +12,8 @@ exports.get = async (req, res) => {
 exports.getAll = async (req, res) => {
   try {
     const orders = await service.getAll();
-    res.json(orders);
+    // res.json(orders);
+    res.render('order', { orders });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
