@@ -16,8 +16,8 @@ router.get('/:id', controller.get);
 router.post('/', controller.insert);
 
 // PUT Method
-// router.put('/update/:id', controller.update);
-router.put('/update', controller.update);
+router.put('/:id', controller.update);
+// router.put('/update', controller.update);
 
 // DELETE Method
 router.delete('/:id', controller.delete);

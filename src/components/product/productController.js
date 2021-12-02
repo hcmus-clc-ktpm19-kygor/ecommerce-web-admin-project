@@ -111,7 +111,7 @@ exports.update = async (req, res) => {
   try {
     const updatedProduct = await service.update(req.params.id, req.body);
     // res.json(updatedProduct);
-    res.render('edit_products', {updatedProduct});
+    res.render('edit_products', { updatedProduct });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -127,7 +127,8 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     await service.delete(req.params.id);
-    res.json({message: `Product ${req.params.id} has been deleted`});
+    const products = await service.paging(req.query.page);
+    res.render('products', { products });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
