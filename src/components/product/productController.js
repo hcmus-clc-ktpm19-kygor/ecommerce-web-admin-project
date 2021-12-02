@@ -75,9 +75,10 @@ exports.getAll = async (req, res) => {
  */
 exports.insert = async (req, res) => {
   try {
-    const newProduct = await service.insert(req.body);
-    res.status(201).json(newProduct);
-    // res.render('addproducts');
+    await service.insert(req.body);
+    const products = await service.paging(req.query.page);
+    // res.status(201).json(newProduct);
+    res.render('products', { products });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

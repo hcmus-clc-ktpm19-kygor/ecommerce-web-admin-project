@@ -31,6 +31,7 @@ const productSchema = new Schema({
   producer: String,
   category: String,
   stock: Number,
+  image_url: String,
   discount: Object,
   offer: Object
 }, { timestamps: true, versionKey: false });

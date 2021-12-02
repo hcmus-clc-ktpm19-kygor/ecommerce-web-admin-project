@@ -60,6 +60,13 @@ exports.getAll = async () => {
  * @returns {Promise<{product: model}>}
  */
 exports.insert = async (newProduct) => {
+  let { discount, offer } = newProduct;
+
+  discount = discount.split(':')[1].trim();
+
+  newProduct.discount = { rate: discount };
+  newProduct.offer = { content: offer };
+
   const product = new model(newProduct);
   try {
     return await product.save();
