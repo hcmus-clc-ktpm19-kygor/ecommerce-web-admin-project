@@ -45,12 +45,12 @@
                           </i>
                           View
                         </a> -->
+                      <form method="POST" action="/api/product/{{this._id}}?_method=DELETE">
                       <a class="btn btn-info btn-sm" href="/products/{{this._id}}">
                         <i class="fas fa-pencil-alt">
                         </i>
                         Edit
                       </a>
-                      <form method="POST" action="/api/product/{{this._id}}?_method=DELETE">
                         <input class="btn btn-danger btn-sm" type="submit" value="Delete">
                       </form>
                     </td>
