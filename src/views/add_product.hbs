@@ -1,0 +1,159 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Điền thông tin sản phẩm</h1>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <form action="/api/product" method="POST">
+      <div class="row">
+          <div class="col-md-6">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Thông tin cơ bản</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="inputName">Tên sản phẩm</label>
+                  <input type="text" id="inputName" name="name" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputOrgin">Xuất sứ</label>
+                  <input type="text" id="inputOrgin" name="origin" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputMaint">Bảo hành (tháng)</label>
+                  <input type="number" id="inputMaint" name="maint" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputColor">Màu sắc</label>
+                  <input type="text" id="inputColor" name="color" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputStock">Số lượng tồn</label>
+                  <input type="number" id="inputStock" name="stock" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputProducer">Nhà sản xuất</label>
+                  <input type="text" id="inputProducer" name="producer" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputCPU">CPU</label>
+                  <input type="text" id="inputCPU" name="CPU" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputRAM">RAM</label>
+                  <input type="text" id="inputRAM" name="RAM" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputCard">Card đồ họa</label>
+                  <input type="text" id="inputCard" name="graphic_card" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputScreen">Màn hình</label>
+                  <input type="text" id="inputScreen" name="screen" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputPort">Cổng giao tiếp</label>
+                  <input type="text" id="inputPort" name="port" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputRead">Đọc thẻ nhớ</label>
+                  <input type="text" id="inputRead" name="read_mem_card" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputCam">Webcam</label>
+                  <input type="text" id="inputCam" name="webcam" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputWifi">Chuẩn Wifi</label>
+                  <input type="text" id="inputWifi" name="WIFI" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputBluetooth">Bluetooth</label>
+                  <input type="text" id="inputBluetooth" name="bluetooth" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputOS">Hệ điều hành</label>
+                  <input type="text" id="inputOS" name="os" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputPin">Pin</label>
+                  <input type="text" id="inputPin" name="pin" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputWeight">Trọng lượng</label>
+                  <input type="number" id="inputWeight" name="weight" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputSize">Kích thước</label>
+                  <input type="text" id="inputSize" name="size" class="form-control">
+                </div>
+                <!-- /.card-body -->
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+          <div class="col-md-6">
+            <div class="card card-secondary">
+              <div class="card-header">
+                <h3 class="card-title">Giá cả</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="inputPrice">Giá niêm yết</label>
+                  <input type="text" id="inputPrice" name="price" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="inputDiscount">Mã khuyến mãi</label>
+                  <select class="custom-select rounded-0" id="inputDiscount" name="discount">
+                    {{#each discounts}}
+                    <option>Phần trăm giảm giá: {{this.rate}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="inputOffer">Mã ưu đãi</label>
+                  <select class="custom-select rounded-0" id="inputOffer" name="offer">
+                    {{#each offers}}
+                    <option>{{this.content}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <a href="/products" class="btn btn-secondary">Hủy</a>
+          <input type="submit" value="Thêm sản phẩm" class="btn btn-success float-right">
+        </div>
+      </div>
+    </form>
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

@@ -15,7 +15,7 @@ exports.get = async (req, res) => {
     const offers = await offerService.getAll();
     const discounts = await discountService.getAll();
     // res.json(product);
-    res.render('editproduct', { product , offers,  discounts });
+    res.render('edit_product', { product , offers,  discounts});
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -42,7 +42,7 @@ exports.renderAddProductPage = async (req, res) => {
     const offers = await offerService.getAll();
     const discounts = await discountService.getAll();
     // res.json({ offers, discounts });
-    res.render('addproduct', { offers,  discounts});
+    res.render('add_product', { offers,  discounts});
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -60,6 +60,22 @@ exports.getAll = async (req, res) => {
     const products = await service.getAll();
     // res.json(products);
     // res.render('products', { products });
+    res.render('products', { products });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+/**
+ * Lay list anh cac san pham
+ *
+ * @param req request
+ * @param res response
+ * @returns {Promise<void>}
+ */
+exports.getImage = async (req, res) => {
+  try {
+    const products = await service.getAll();
     res.render('gallery', { products });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -95,7 +111,7 @@ exports.update = async (req, res) => {
   try {
     const updatedProduct = await service.update(req.params.id, req.body);
     // res.json(updatedProduct);
-    res.render('editproducts', {updatedProduct});
+    res.render('edit_products', {updatedProduct});
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
