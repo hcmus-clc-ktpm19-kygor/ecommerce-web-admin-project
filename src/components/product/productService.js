@@ -60,6 +60,10 @@ exports.getAll = async () => {
  * @returns {Promise<{product: model}>}
  */
 exports.insert = async (newProduct) => {
+
+  const $form = $("form.insert_product");
+  newProduct = $form.serializeArray();
+
   const product = new model(newProduct);
   try {
     return await product.save();
