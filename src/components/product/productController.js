@@ -82,7 +82,6 @@ exports.getImage = async (req, res) => {
   }
 };
 
-
 /**
  * Them san pham moi vao database tra ket qua neu thanh cong
  *

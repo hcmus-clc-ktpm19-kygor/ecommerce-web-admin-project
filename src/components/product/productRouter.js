@@ -15,7 +15,6 @@ router.get('/:id', controller.get);
 
 // POST Method
 router.post('/', controller.insert);
-router.post('/generate-fake-data', fakeDataGenerator.generateFakeAccount);
 
 // PUT Method
 // router.put('/update/:id', controller.update);
