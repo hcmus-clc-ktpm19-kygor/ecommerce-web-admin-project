@@ -1,6 +1,6 @@
 const model = require('./accountModel');
 const service = require('./accountService');
-const dataFaker = require('../FakeGenerator/FakeAccountGenerator');
+// const dataFaker = require('../FakeGenerator/FakeAccountGenerator');
 
 /**
  * Lay 1 tai khoan len bang id
