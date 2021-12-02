@@ -59,14 +59,14 @@ exports.insert = async (req, res) => {
   }
 }
 
-exports.generateFakeData = async (req, res) => {
-  try {
-    const accounts = await dataFaker.generateFakeAccount();
-    res.status(201).json(accounts);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-}
+// exports.generateFakeData = async (req, res) => {
+//   try {
+//     const accounts = await dataFaker.generateFakeAccount();
+//     res.status(201).json(accounts);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// }
 
 /**
  * Tim va Update account da co trong database tra ket qua neu thanh cong

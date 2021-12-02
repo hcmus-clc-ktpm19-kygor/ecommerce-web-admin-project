@@ -9,7 +9,7 @@ router.get('/', controller.getAll);
 
 // POST Method
 router.post('/', controller.insert);
-router.post('/generate-fake-data', controller.generateFakeData);
+// router.post('/generate-fake-data', controller.generateFakeData);
 
 // PUT Method
 router.put('/:id', controller.update);
