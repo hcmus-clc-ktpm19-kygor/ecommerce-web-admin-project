@@ -60,11 +60,28 @@ exports.getAll = async (req, res) => {
     const products = await service.getAll();
     // res.json(products);
     // res.render('products', { products });
+    res.render('products', { products });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+/**
+ * Lay list anh cac san pham
+ *
+ * @param req request
+ * @param res response
+ * @returns {Promise<void>}
+ */
+exports.getImage = async (req, res) => {
+  try {
+    const products = await service.getAll();
     res.render('gallery', { products });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
 
 /**
  * Them san pham moi vao database tra ket qua neu thanh cong

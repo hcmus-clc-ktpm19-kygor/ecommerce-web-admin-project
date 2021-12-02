@@ -143,8 +143,8 @@
   <script src="/plugins/filterizr/jquery.filterizr.min.js"></script>
   <!-- AdminLTE App -->
   <script src="/js/adminlte.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="/js/demo.js"></script>
+{{!--   <!-- AdminLTE for demo purposes --> --}}
+{{!--   <script src="/js/demo.js"></script> --}}
 
   <!-- PAGE PLUGINS -->
   <!-- jQuery Mapael -->
@@ -171,8 +171,9 @@
   <script>
     $(function () {
       $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": true,
+        "responsive": true, "lengthChange":true, "pageLength": 6, "autoWidth": true,
         "paging": true, "searching": true, "ordering": false, "info": true,
+        "pagingType": "simple_numbers",
         "buttons": ["copy", "csv", "excel", "pdf", "print"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
