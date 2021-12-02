@@ -1,6 +1,5 @@
 const model = require('./accountModel');
 const mongoose = require('mongoose');
-const faker = require('faker');
 
 /**
  * Lay 1 san pham len tu database bang id
