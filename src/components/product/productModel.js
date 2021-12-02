@@ -31,6 +31,7 @@ const productSchema = new Schema({
   producer: String,
   category: String,
   stock: Number,
+  insurance: Number,
   image_url: String,
   discount: Object,
   offer: Object
