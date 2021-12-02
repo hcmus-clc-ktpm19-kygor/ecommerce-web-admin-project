@@ -92,9 +92,10 @@ exports.getImage = async (req, res) => {
 exports.insert = async (req, res) => {
   try {
     await service.insert(req.body);
-    const products = await service.paging(req.query.page);
+    // const products = await service.paging(req.query.page);
     // res.status(201).json(newProduct);
-    res.render('products', { products });
+    // res.render('products', { products });
+    res.redirect('/products');
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -111,7 +112,8 @@ exports.update = async (req, res) => {
   try {
     const updatedProduct = await service.update(req.params.id, req.body);
     // res.json(updatedProduct);
-    res.render('edit_products', { updatedProduct });
+    // res.render('edit_products', { updatedProduct });
+    res.redirect('/products');
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -127,8 +129,9 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     await service.delete(req.params.id);
-    const products = await service.paging(req.query.page);
-    res.render('products', { products });
+    // const products = await service.paging(req.query.page);
+    // res.render('products', { products });
+    res.redirect('/products');
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

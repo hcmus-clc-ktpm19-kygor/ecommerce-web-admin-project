@@ -84,6 +84,13 @@ exports.insert = async (newProduct) => {
  */
 exports.update = async (id, updateProduct) => {
   try {
+    let { discount, offer } = updateProduct;
+
+    discount = discount.split(':')[1].trim();
+
+    updateProduct.discount = { rate: discount };
+    updateProduct.offer = { content: offer };
+
     return await model.findByIdAndUpdate(id, updateProduct,
         { new: true });
   } catch (err) {

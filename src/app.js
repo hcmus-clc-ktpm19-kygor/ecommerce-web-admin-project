@@ -10,7 +10,6 @@ const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
 
-
 const accountRouter = require('./components/account/accountRouter');
 const customerRouter = require('./components/customer/customerRouter');
 const discountRouter = require('./components/discount/discountRouter');
