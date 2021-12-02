@@ -15,7 +15,7 @@ exports.get = async (req, res) => {
     const offers = await offerService.getAll();
     const discounts = await discountService.getAll();
     // res.json(product);
-    res.render('editproduct', { product , offers,  discounts});
+    res.render('editproduct', { product , offers,  discounts });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
