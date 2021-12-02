@@ -60,9 +60,12 @@ exports.getAll = async () => {
  * @returns {Promise<{product: model}>}
  */
 exports.insert = async (newProduct) => {
+  let { discount, offer } = newProduct;
 
-  const $form = $("form.insert_product");
-  newProduct = $form.serializeArray();
+  discount = discount.split(':')[1].trim();
+
+  newProduct.discount = { rate: discount };
+  newProduct.offer = { content: offer };
 
   const product = new model(newProduct);
   try {
