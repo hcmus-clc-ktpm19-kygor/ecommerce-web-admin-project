@@ -13,6 +13,7 @@ const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
 const profileRouter = require('./routes/profile');
+const adminRouter = require('./routes/admin');
 
 const authRouter = require('./components/auth/authRouter');
 const orderRouter = require('./components/order/orderRouter');
@@ -49,6 +50,7 @@ app.use('/products', productRouter);
 app.use('/order', orderRouter);
 app.use('/users', usersRouter);
 app.use('/profile',profileRouter);
+app.use('/admin',adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

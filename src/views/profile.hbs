@@ -17,7 +17,7 @@
             <!-- Profile Image -->
             <div class="card card-success">
               <div class="card-header">
-                <h3 class="card-title">Admin</h3>
+                <h3 class="card-title">Ảnh đại diện</h3>
               </div>
               <div class="card-body box-profile">
                 <div class="text-center">
@@ -26,9 +26,9 @@
                        alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center">Nina Mcintire</h3>
+                <h3 class="profile-username text-center">Nguyễn Đức Nam</h3>
 
-                <p class="text-muted text-center">Software Engineer</p>
+                <p class="text-muted text-center">Quản trị viên</p>
               </div>
               <!-- /.card-body -->
             </div>
@@ -37,46 +37,40 @@
             <!-- About Me Box -->
             <div class="card card-warning">
               <div class="card-header">
-                <h3 class="card-title">Detail info</h3>
+                <h3 class="card-title">Thông tin cá nhân</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <strong><i class="fas fa-book mr-1"></i> Education</strong>
+                <strong><i class="fas fa-book mr-1"></i> Họ và tên</strong>
 
                 <p class="text-muted">
-                  B.S. in Computer Science from the University of Tennessee at Knoxville
+                  Nguyễn Đức Nam
                 </p>
 
                 <hr>
 
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Số điện thoại</strong>
 
-                <p class="text-muted">Malibu, California</p>
-
-                <hr>
-
-                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-
-                <p class="text-muted">
-                  <span class="tag tag-danger">UI Design</span>
-                  <span class="tag tag-success">Coding</span>
-                  <span class="tag tag-info">Javascript</span>
-                  <span class="tag tag-warning">PHP</span>
-                  <span class="tag tag-primary">Node.js</span>
-                </p>
+                <p class="text-muted">0988012177</p>
 
                 <hr>
 
-                <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Địa chỉ</strong>
 
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                <p class="text-muted">227 Nguyễn Văn Cừ P4 Q5 TPHCM</p>
+
+                <hr>
+
+                <strong><i class="far fa-file-alt mr-1"></i> Email</strong>
+
+                <p class="text-muted">ndnam19@clc.fitus.edu.vn</p>
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
             <!-- Log out-->
             <div class="card bg-white">
-                <button type="button" class="btn btn-danger btn-lg">Log out</button>
+                <button type="button" class="btn btn-danger btn-lg">Đăng xuất</button>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -87,25 +81,21 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link " href="#activity" data-toggle="tab">Audit log</a></li>
-                  <li class="nav-item"><a class="nav-link " href="#list" data-toggle="tab">Roles</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Edit profile</a></li>
+                  <li class="nav-item"><a class="nav-link " href="#activity" data-toggle="tab">Lịch sử</a></li>
+                  <li class="nav-item"><a class="nav-link " href="#list" data-toggle="tab">Danh sách quản trị viên</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Chỉnh sửa thông tin</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
                 <div class="tab-content">
                   <div class="tab-pane" id="activity">
-                    <div class="card">
-                      <div class="card-body">
                         <p>Log xem ai đã làm gì nè</p>
-                      </div>
-                    </div>
                   </div>
                   <div class="tab-pane" id="list">
                         <div class="row">
                           <div class="col-12">
                               <!-- /.card-header -->
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="example" class="table table-bordered table-striped">
                                   <thead>
                                   <tr>
                                     <th>ID</th>
@@ -141,47 +131,32 @@
                   <div class="tab-pane" id="settings">
                     <form class="form-horizontal">
                       <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                        <label for="inputName" class="col-sm-2 col-form-label">Họ và tên</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputName" placeholder="Name">
+                          <input type="text" class="form-control" id="inputName" value="Nam">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputPhone" class="col-sm-2 col-form-label">Số điện thoại</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="inputPhone" value="0988012170">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputAddress" class="col-sm-2 col-form-label">Địa chỉ</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="inputAddress" value="NVC">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Name">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                        <div class="col-sm-10">
-                          <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                          <input type="text" class="form-control" id="inputEmail" value="@fit">
                         </div>
                       </div>
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
+                          <button type="submit" class="btn btn-danger">Chỉnh sửa</button>
                         </div>
                       </div>
                     </form>
