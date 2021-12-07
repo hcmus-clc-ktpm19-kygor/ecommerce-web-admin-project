@@ -1,12 +1,13 @@
 const model = require('./adminModel');
 const mongoose = require('mongoose');
+const bcrypt = require("bcrypt");
 
 /**
- * Lay 1 san pham len tu database bang id
+ * Lay admin len tu database bang id
  * @param id {@link mongoose.Types.ObjectId}
  * @returns {Promise<*|{mess: string}>}
  */
-module.exports.get = async (id) => {
+module.exports.getById = async (id) => {
   try {
     const account = await model.findById(id);
     if (account === null) {
@@ -19,7 +20,34 @@ module.exports.get = async (id) => {
 };
 
 /**
- * Phan trang cac account, moi trang 5 account
+ * Lay admin len tu database bang username
+ * @returns {Promise<*|{mess: string}>}
+ * @param username
+ */
+module.exports.getByUsername = async (username) => {
+  try {
+    const account = await model.findOne({ username });
+    if (account === null) {
+      return { mess: `Admin '${id}' not found` };
+    }
+    return account;
+  } catch (err) {
+    throw err;
+  }
+};
+
+/**
+ * Xac thuc passsword
+ * @param user user da dang nhap
+ * @param password password nhap vao
+ * @returns {Promise<*>}
+ */
+module.exports.validatePassword = async (user, password) => {
+  return await bcrypt.compare(password, user.password);
+}
+
+/**
+ * Phan trang cac account, moi trang 5 admin
  * @param page
  * @returns {Promise<void>}
  */
@@ -38,7 +66,7 @@ exports.paging = async (page) => {
 };
 
 /**
- * Lay 1 list cac san pham tu database
+ * Lay 1 list cac admin tu database
  * @returns {Promise<[account: model]>}
  */
 module.exports.getAll = async () => {
@@ -54,10 +82,17 @@ module.exports.getAll = async () => {
  * @param newAccount
  * @returns {Promise<{account: model}>}
  */
-module.exports.insert = async (newAccount) => {
-  const account = new model(newAccount);
+module.exports.insert = async ({ username, password, phone }) => {
   try {
-    return await account.save();
+    const isExisted = await model.exists({ username });
+    if (isExisted) {
+      return null;
+    } else {
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      const admin = new model({ username, password: hashedPassword, phone });
+      return await admin.save();
+    }
   } catch (err) {
     throw err;
   }

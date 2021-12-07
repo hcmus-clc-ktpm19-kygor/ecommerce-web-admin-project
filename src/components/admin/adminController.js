@@ -11,7 +11,7 @@ const service = require('./adminService');
  */
 exports.get = async (req, res) => {
   try {
-    const account = await service.get(req.params.id);
+    const account = await service.getById(req.params.id);
     res.json(account);
   } catch (err) {
     res.status(500).json({ message: err.message });

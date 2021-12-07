@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const adminSchema = new Schema({
   // Schema attributes are defined here
-  username: { type: String, required: true },
+  username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   name: String,
   phone: { type: String, required: true },
