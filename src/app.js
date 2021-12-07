@@ -1,14 +1,9 @@
-require('dotenv').config();
-
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const methodOverride = require('method-override');
-
-const session = require('express-session');
-const passport = require("./config/passport");
+const methodOverride = require('method-override')
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -16,7 +11,6 @@ const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
 const profileRouter = require('./routes/profile');
 
-const authRouter = require('./components/auth/authRouter');
 const orderRouter = require('./components/order/orderRouter');
 const productRouter = require('./components/product/productRouter');
 
@@ -37,13 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method', { methods: ['POST', 'GET'] }));
 
-// Passport middlewares
-app.use(session({ secret: process.env.SESSION_SECRET_KEY }));
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use('/', indexRouter);
-app.use('/', authRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/products', productRouter);
