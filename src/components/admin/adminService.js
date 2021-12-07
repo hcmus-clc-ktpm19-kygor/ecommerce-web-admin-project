@@ -1,22 +1,48 @@
 const model = require('./adminModel');
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 /**
- * Lay 1 san pham len tu database bang id
+ * Lay admin len tu database bang id
  * @param id {@link mongoose.Types.ObjectId}
  * @returns {Promise<*|{mess: string}>}
  */
-module.exports.get = async (id) => {
+module.exports.getById = async (id) => {
   try {
-    const account = await model.findById(id);
-    if (account === null) {
-      return { mess: `Account id '${id}' not found` };
+    const admin = await model.findById(id);
+    if (admin === null) {
+      return { mess: `Admin id '${id}' not found` };
     }
-    return account;
+    return admin;
   } catch (err) {
     throw err;
   }
 };
+
+/**
+ * Lay admin len tu database bang username
+ *
+ * @param username
+ * @returns {Promise<*>}
+ */
+module.exports.getByUsername = async (username) => {
+  try {
+    return await model.findOne({username});
+  } catch (err) {
+    throw err;
+  }
+};
+
+/**
+ * Xac thuc password
+ *
+ * @param user admin lay tu database
+ * @param password password dang nhap
+ * @returns {Promise<*>}
+ */
+// module.exports.validatePassword = async (user, password) => {
+//   return await bcrypt.compare(password, user.password);
+// }
 
 /**
  * Phan trang cac account, moi trang 5 account

@@ -11,7 +11,7 @@ const service = require('./adminService');
  */
 exports.get = async (req, res) => {
   try {
-    const account = await service.get(req.params.id);
+    const account = await service.getById(req.params.id);
     res.json(account);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -58,15 +58,6 @@ exports.insert = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 }
-
-// exports.generateFakeData = async (req, res) => {
-//   try {
-//     const accounts = await dataFaker.generateFakeAccount();
-//     res.status(201).json(accounts);
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// }
 
 /**
  * Tim va Update account da co trong database tra ket qua neu thanh cong
