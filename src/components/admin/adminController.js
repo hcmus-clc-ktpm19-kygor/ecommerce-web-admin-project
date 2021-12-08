@@ -34,21 +34,6 @@ exports.paging = async (req, res) => {
   }
 }
 
-/**
- * Lay list tat ca tai khoan
- *
- * @param req request
- * @param res response
- * @returns {Promise<void>}
- */
-exports.getAllAdmins = async (req, res) => {
-  try {
-    const admins = await service.getAll();
-    res.render('profile', admins);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
 
 /**
  * Render trang them admin
@@ -68,7 +53,8 @@ exports.renderAddAdmin = (req, res) => {
 exports.renderProfile = async (req, res) => {
   try {
     const admin = await service.getByUsername(req.username);
-    res.render('profile', admin);
+    const admins = await service.getAll();
+    res.render('profile', {admin, admins});
   } catch (e) {
     res.status(500).json({ message: e.message });
   }

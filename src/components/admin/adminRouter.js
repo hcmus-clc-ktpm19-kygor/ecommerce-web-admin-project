@@ -7,7 +7,6 @@ router.get('/page', controller.paging);
 router.get('/add-admin', controller.renderAddAdmin);
 router.get('/profile', controller.renderProfile);
 // router.get('/:id', controller.get);
-router.get('/profile', controller.getAllAdmins);
 
 // POST Method
 router.post('/', controller.insert);

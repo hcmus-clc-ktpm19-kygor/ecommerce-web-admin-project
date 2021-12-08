@@ -98,19 +98,20 @@
                                 <table id="example" class="table table-bordered table-striped">
                                   <thead>
                                   <tr>
-                                    <th>ID</th>
+                                    <th>ID (Email)</th>
                                     <th>Tên</th>
-                                    <th>Vai trò</th>
-                                    <th>Người cấp quyền</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Địa chỉ</th>
                                     <th> </th>
                                   </tr>
                                   </thead>
                                   <tbody>
+                                  {{#each admins}}
                                   <tr>
-                                    <td>weird</td>
+                                    <td>{{this.email}}</td>
                                     <td>{{this.name}}</td>
-                                    <td>{{this.stock}}</td>
-                                    <td>{{this.price}}</td>
+                                    <td>{{this.phone}}</td>
+                                    <td>{{this.address}}</td>
                                     <td class="project-actions text-md-center">
                                       <a class="btn btn-info btn-sm">
                                         <i class="fas fa-pencil-alt">
@@ -120,6 +121,7 @@
                                       <input class="btn btn-danger btn-sm" type="submit" value="Delete">
                                     </td>
                                   </tr>
+                                  {{/each}}
                                   </tbody>
                                 </table>
                               <!-- /.card-body -->
