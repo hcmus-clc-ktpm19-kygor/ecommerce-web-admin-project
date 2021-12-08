@@ -52,9 +52,8 @@ exports.renderAddAdmin = (req, res) => {
  */
 exports.renderProfile = async (req, res) => {
   try {
-    const admin = await service.getByUsername(req.username);
     const admins = await service.getAll();
-    res.render('profile', {admin, admins});
+    res.render('profile', { admins });
   } catch (e) {
     res.status(500).json({ message: e.message });
   }
@@ -70,7 +69,7 @@ exports.renderProfile = async (req, res) => {
 exports.insert = async (req, res) => {
   try {
     const newAccount = await service.insert(req.body);
-    res.status(201).json(newAccount);
+    res.redirect('/admin/profile');
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -113,7 +112,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     await service.delete(req.params.id);
-    res.json({message: `Account ${req.params.id} has been deleted`});
+    res.redirect('/admin/profile');
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

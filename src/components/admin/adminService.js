@@ -1,7 +1,7 @@
 const model = require('./adminModel');
-const mongoose = require('mongoose');
-const bcrypt = require("bcrypt");
-const faker = require("faker");
+const bcrypt = require('bcrypt');
+const faker = require('faker');
+const email = require('../../config/email');
 
 /**
  * Lay admin len tu database bang id
@@ -27,11 +27,7 @@ module.exports.getById = async (id) => {
  */
 module.exports.getByUsername = async (username) => {
   try {
-    const account = await model.findOne({ username });
-    if (account === null) {
-      return { mess: `Admin '${username}' not found` };
-    }
-    return account;
+    return await model.findOne({ username });
   } catch (err) {
     throw err;
   }
@@ -87,6 +83,8 @@ module.exports.insert = async (newAdmin) => {
   try {
     const password = faker.internet.password();
 
+    await email.sendPassword(newAdmin.email, password);
+
     newAdmin.username = newAdmin.email;
     newAdmin.password = await bcrypt.hash(password, 10);
 
@@ -122,7 +120,12 @@ exports.update = async (username, updateAccount) => {
  */
 exports.delete = async (id) => {
   try {
-    return await model.findByIdAndDelete(id);
+    const admin = await model.findById(id);
+
+    if (admin.username !== 'admin') {
+      return await model.deleteOne({ id });
+    }
+    return null;
   } catch (err) {
     throw err;
   }

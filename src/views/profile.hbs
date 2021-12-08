@@ -22,7 +22,7 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="card-img-top img-circle img-fluid"
-                       src="/img/gimmefud.jpg"
+                       src="{{admin.avatar_url}}"
                        alt="User profile picture">
                 </div>
 
@@ -113,12 +113,9 @@
                                     <td>{{this.phone}}</td>
                                     <td>{{this.address}}</td>
                                     <td class="project-actions text-md-center">
-                                      <a class="btn btn-info btn-sm">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                      </a>
-                                      <input class="btn btn-danger btn-sm" type="submit" value="Delete">
+                                      <form action="/admin/{{this._id}}?_method=DELETE" method="POST">
+                                        <input class="btn btn-danger btn-sm" type="submit" value="Delete">
+                                      </form>
                                     </td>
                                   </tr>
                                   {{/each}}
