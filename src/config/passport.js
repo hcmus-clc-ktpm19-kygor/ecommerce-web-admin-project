@@ -16,11 +16,18 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser(function(user, done) {
-  done(null, user.username);
+  done(null, {
+    username: user.username,
+    name: user.name,
+    phone: user.phone,
+    address: user.address,
+    email: user.email
+  });
 });
 
 passport.deserializeUser(async function(user, done) {
-  done(null, user);
+  const admin = await adminService.getByUsername(user.username);
+  done(null, admin);
 });
 
 module.exports = passport;

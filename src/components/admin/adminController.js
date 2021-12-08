@@ -2,6 +2,7 @@ const model = require('./adminModel');
 const service = require('./adminService');
 // const dataFaker = require('../FakeGenerator/FakeAccountGenerator');
 
+//---------------------------------GET METHOD--------------------------------------------//
 /**
  * Lay 1 tai khoan len bang id
  *
@@ -18,6 +19,12 @@ exports.get = async (req, res) => {
   }
 };
 
+/**
+ * Phan trang
+ * @param req request
+ * @param res response
+ * @returns {Promise<void>}
+ */
 exports.paging = async (req, res) => {
   try {
     const accounts = await service.paging(req.query.page);
@@ -34,15 +41,39 @@ exports.paging = async (req, res) => {
  * @param res response
  * @returns {Promise<void>}
  */
-exports.getAll = async (req, res) => {
+exports.getAllAdmins = async (req, res) => {
   try {
-    const accounts = await service.getAll();
-    res.json(accounts);
+    const admins = await service.getAll();
+    res.render('profile', admins);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
+/**
+ * Render trang them admin
+ * @param req request
+ * @param res response
+ * @returns {Promise<void>}
+ */
+exports.renderAddAdmin = (req, res) => {
+  res.render('add_admin');
+}
+
+/**
+ * Render profile
+ * @param req request
+ * @param res response
+ */
+exports.renderProfile = async (req, res) => {
+  try {
+    const admin = await service.getByUsername(req.username);
+    res.render('profile', admin);
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+}
+//---------------------------------POST METHOD--------------------------------------------//
 /**
  * Them account moi vao database tra ket qua neu thanh cong
  *
@@ -68,6 +99,7 @@ exports.insert = async (req, res) => {
 //   }
 // }
 
+//---------------------------------PUT METHOD--------------------------------------------//
 /**
  * Tim va Update account da co trong database tra ket qua neu thanh cong
  *
@@ -77,13 +109,14 @@ exports.insert = async (req, res) => {
  */
 exports.update = async (req, res) => {
   try {
-    const updatedAccount = await service.update(req.params.id, req.body);
-    res.json(updatedAccount);
+    await service.update(req.params.username, req.body);
+    res.redirect('/admin/profile');
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 }
 
+//---------------------------------DELETE METHOD--------------------------------------------//
 /**
  * Tim va xoa tai khoan trong database
  *

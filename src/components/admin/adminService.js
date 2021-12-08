@@ -1,6 +1,7 @@
 const model = require('./adminModel');
 const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
+const faker = require("faker");
 
 /**
  * Lay admin len tu database bang id
@@ -28,7 +29,7 @@ module.exports.getByUsername = async (username) => {
   try {
     const account = await model.findOne({ username });
     if (account === null) {
-      return { mess: `Admin '${id}' not found` };
+      return { mess: `Admin '${username}' not found` };
     }
     return account;
   } catch (err) {
@@ -79,20 +80,18 @@ module.exports.getAll = async () => {
 
 /**
  * Them san pham moi vao database
- * @param newAccount
  * @returns {Promise<{account: model}>}
+ * @param newAdmin
  */
-module.exports.insert = async ({ username, password, phone }) => {
+module.exports.insert = async (newAdmin) => {
   try {
-    const isExisted = await model.exists({ username });
-    if (isExisted) {
-      return null;
-    } else {
-      const hashedPassword = await bcrypt.hash(password, 10);
+    const password = faker.internet.password();
 
-      const admin = new model({ username, password: hashedPassword, phone });
-      return await admin.save();
-    }
+    newAdmin.username = newAdmin.email;
+    newAdmin.password = await bcrypt.hash(password, 10);
+
+    const admin = new model(newAdmin);
+    return await admin.save();
   } catch (err) {
     throw err;
   }
@@ -101,14 +100,16 @@ module.exports.insert = async ({ username, password, phone }) => {
 /**
  * Cap nhat thong tin tai khoan co trong database
  *
- * @param id
+ * @param username
  * @param updateAccount
- * @returns {Promise<{account: model}>}
+ * @returns {Promise<{address, phone, name, email}>}
  */
-exports.update = async (id, updateAccount) => {
+exports.update = async (username, updateAccount) => {
   try {
-    return await model.findByIdAndUpdate(id, updateAccount,
+    const { name, phone, address, email } = await model.findOneAndUpdate({ username }, updateAccount,
         { new: true });
+
+    return { name, phone, address, email };
   } catch (err) {
     throw err;
   }

@@ -9,13 +9,9 @@ const session = require('express-session');
 const passport = require("./config/passport");
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const loginRouter = require('./routes/login');
-const registerRouter = require('./routes/register');
-const profileRouter = require('./routes/profile');
-const adminRouter = require('./routes/admin');
 
 const authRouter = require('./components/auth/authRouter');
+const adminRouter = require('./components/admin/adminRouter');
 const orderRouter = require('./components/order/orderRouter');
 const productRouter = require('./components/product/productRouter');
 
@@ -43,13 +39,22 @@ app.use(session({ secret: process.env.SESSION_SECRET_KEY }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Authentication middleware
 app.use('/', authRouter);
+
+// Secure middleware
+app.all('/*', loggedInGuard);
+
+// Store account
+app.use(function (req, res, next) {
+  res.locals.admin = req.user;
+  next();
+})
+
+// Router middlewares
 app.use('/', indexRouter);
-app.use('/register', registerRouter);
 app.use('/products', productRouter);
 app.use('/order', orderRouter);
-app.use('/users', usersRouter);
-app.use('/profile',profileRouter);
 app.use('/admin',adminRouter);
 
 // catch 404 and forward to error handler
