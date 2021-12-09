@@ -19,7 +19,7 @@ module.exports.sendPassword = async (email, password) => {
 
   await transporter.sendMail(mailOptions, function(error, info) {
     if (error) {
-      console.log(error);
+      throw Error(error.message);
     } else {
       console.log('Email sent: ' + info.response);
     }

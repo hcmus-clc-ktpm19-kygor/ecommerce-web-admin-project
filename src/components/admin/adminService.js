@@ -123,7 +123,7 @@ exports.delete = async (id) => {
     const admin = await model.findById(id);
 
     if (admin.username !== 'admin') {
-      return await model.deleteOne({ id });
+      return await model.findByIdAndDelete(id, { new: true });
     }
     return null;
   } catch (err) {
