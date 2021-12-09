@@ -54,10 +54,14 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+           {{#if admin.avatar_url}}
+             <img class="img-circle elevation-2" src="{{admin.avatar_url}}" alt="User Image">
+           {{else}}
+             <img class="img-circle elevation-2" src="/img/user2-160x160.jpg" alt="User Image">
+           {{/if}}
         </div>
         <div class="info">
-          <a class="d-block">Nguyễn Đức Nam</a>
+          <a class="d-block">{{admin.username}}</a>
         </div>
       </div>
 
