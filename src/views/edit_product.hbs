@@ -151,9 +151,13 @@
               <div class="form-group">
                 <label for="inputDiscount">Mã khuyến mãi</label>
                 <select class="custom-select rounded-0" id="inputDiscount" name="discount">
-                  <option selected>Phần trăm giảm giá: {{product.discount.rate}}</option>
+{{!--                   <option selected>Phần trăm giảm giá: {{product.discount.rate}}</option> --}}
                   {{#each discounts}}
-                  <option>Phần trăm giảm giá: {{this.rate}}</option>
+                    {{#if (is_equals ../product.discount.rate this.rate)}}
+                      <option selected>Phần trăm giảm giá: {{this.rate}}</option>
+                    {{else}}
+                      <option>Phần trăm giảm giá: {{this.rate}}</option>
+                    {{/if}}
                   {{/each}}
                 </select>
               </div>

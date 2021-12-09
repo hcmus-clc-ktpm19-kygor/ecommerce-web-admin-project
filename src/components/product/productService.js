@@ -62,7 +62,7 @@ exports.getAll = async () => {
 exports.insert = async (newProduct) => {
   let { discount, offer } = newProduct;
 
-  discount = discount.split(':')[1].trim();
+  discount = parseFloat(discount.split(':')[1].trim());
 
   newProduct.discount = { rate: discount };
   newProduct.offer = { content: offer };
@@ -86,7 +86,7 @@ exports.update = async (id, updateProduct) => {
   try {
     let { discount, offer } = updateProduct;
 
-    discount = discount.split(':')[1].trim();
+    discount = parseFloat(discount.split(':')[1].trim());
 
     updateProduct.discount = { rate: discount };
     updateProduct.offer = { content: offer };
