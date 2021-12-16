@@ -1,0 +1,59 @@
+.custom-toggle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.active {
+ bottom: 3px;
+}
+
+.custom-toggle span {
+  position: absolute;
+  width: 20px;
+  height: 4px;
+  background: #007bff;
+  border-radius: 4px;
+  transition: 0.5s;
+}
+
+.custom-toggle.active span:nth-child(1) {
+  width: 25px;
+  transform: translateY(-1px) rotate(45deg);
+}
+
+.custom-toggle span:nth-child(1) {
+  transform: translateY(-15px);
+  width: 25px;
+  left: 10px;
+  height: 3.5px;
+  transition-delay: 0.125s;
+}
+
+.custom-toggle span:nth-child(2) {
+  transform: translateY(15px);
+  width: 15px;
+  left: 10px;
+  top: 12px;
+  height: 3.5px;
+}
+
+.custom-toggle.active span:nth-child(2) {
+  width: 25px;
+  transform: translateY(5px) rotate(315deg);
+  transition-delay: 0.25s;
+}
+
+.custom-toggle span:nth-child(3) {
+  top: 15px;
+}
+
+.custom-toggle.active span:nth-child(3) {
+  transform: translateX(60px);
+}
