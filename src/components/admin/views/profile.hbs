@@ -89,6 +89,7 @@
                   <li class="nav-item"><a class="nav-link " href="#activity" data-toggle="tab">Lịch sử</a></li>
                   <li class="nav-item"><a class="nav-link " href="#list" data-toggle="tab">Danh sách quản trị viên</a></li>
                   <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Chỉnh sửa thông tin</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#password" data-toggle="tab">Đổi mật khẩu</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -161,6 +162,32 @@
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
                           <button type="submit" class="btn btn-danger">Chỉnh sửa</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="tab-pane" id="password">
+                    <form class="form-horizontal" action="/admin/{{admin.username}}?_method=PUT" method="POST">
+                      <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Mật khẩu cũ</label>
+                        <div class="col-sm-10">
+                          <input type="password" class="form-control" id="inputName" name="name">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputPhone" class="col-sm-2 col-form-label">Mật khẩu mới</label>
+                        <div class="col-sm-10">
+                          <input type="password" class="form-control" id="inputPhone" name="phone">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputAddress" class="col-sm-2 col-form-label">Nhập lại mật khẩu</label>
+                        <div class="col-sm-10">
+                          <input type="password" class="form-control" id="inputAddress" name="address">
+                        </div>
+                      </div>
+                        <div class="offset-sm-2 col-sm-10">
+                          <button type="submit" class="btn btn-danger">Đổi mật khẩu</button>
                         </div>
                       </div>
                     </form>
