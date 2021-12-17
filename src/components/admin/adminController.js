@@ -40,7 +40,7 @@ exports.paging = async (req, res) => {
  * @returns {Promise<void>}
  */
 exports.renderAddAdmin = (req, res) => {
-  res.render('add_admin');
+  res.render('admin/views/add_admin');
 }
 
 /**
@@ -51,7 +51,7 @@ exports.renderAddAdmin = (req, res) => {
 exports.renderProfile = async (req, res) => {
   try {
     const admins = await service.getAll();
-    res.render('profile', { admins, message: req.flash('success') });
+    res.render('admin/views/profile', { admins, message: req.flash('success') });
   } catch (e) {
     res.status(500).json({ message: e.message });
   }

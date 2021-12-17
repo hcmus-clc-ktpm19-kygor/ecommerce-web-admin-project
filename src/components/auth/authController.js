@@ -7,7 +7,7 @@ const adminService = require('../admin/adminService');
  */
 exports.renderLogin = (req, res) => {
   const invalidAccount = req.query['invalid-account'] !== undefined;
-  res.render('login', { invalidAccount, layout: false });
+  res.render('auth/views/login', { invalidAccount, layout: false });
 }
 
 /**

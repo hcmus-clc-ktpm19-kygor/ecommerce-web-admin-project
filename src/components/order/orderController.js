@@ -13,7 +13,7 @@ exports.getAll = async (req, res) => {
   try {
     const orders = await service.getAll();
     // res.json(orders);
-    res.render('order', { orders });
+    res.render('order/views/order', { orders });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
