@@ -1,4 +1,4 @@
-require('./hbsHelper/helper');
+require('./helpers/helper');
 
 const createError = require('http-errors');
 const express = require('express');
@@ -53,7 +53,6 @@ app.all('/*', loggedInGuard);
 // Store account
 app.use(function (req, res, next) {
   res.locals.admin = req.user;
-  res.locals.message=req.flash();
   next();
 })
 

@@ -1,7 +1,6 @@
 const model = require('./adminModel');
 const bcrypt = require('bcrypt');
 const faker = require('faker');
-const email = require('../../config/email');
 
 /**
  * Lay admin len tu database bang id
@@ -76,20 +75,19 @@ module.exports.getAll = async () => {
 
 /**
  * Them san pham moi vao database
- * @returns {Promise<{account: model}>}
+ * @returns {Promise<{await: *}>}
  * @param newAdmin
  */
 module.exports.insert = async (newAdmin) => {
   try {
-    const password = faker.internet.password();
-
-    await email.sendPassword(newAdmin.email, password);
+    const rawPassword = faker.internet.password();
 
     newAdmin.username = newAdmin.email;
-    newAdmin.password = await bcrypt.hash(password, 10);
+    newAdmin.password = await bcrypt.hash(rawPassword, 10);
 
     const admin = new model(newAdmin);
-    return await admin.save();
+    const addedAdmin = await admin.save();
+    return { admin: addedAdmin , rawPassword };
   } catch (err) {
     throw err;
   }
