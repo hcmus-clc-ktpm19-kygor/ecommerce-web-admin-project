@@ -9,6 +9,7 @@ const methodOverride = require('method-override');
 
 const session = require('express-session');
 const passport = require("./config/passport");
+const flash = require('connect-flash');
 
 const indexRouter = require('./routes/index');
 
@@ -36,10 +37,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method', { methods: ['POST', 'GET'] }));
 
+
 // Passport middlewares
 app.use(session({ secret: process.env.SESSION_SECRET_KEY }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // Authentication middleware
 app.use('/', authRouter);
@@ -50,6 +53,7 @@ app.all('/*', loggedInGuard);
 // Store account
 app.use(function (req, res, next) {
   res.locals.admin = req.user;
+  res.locals.message=req.flash();
   next();
 })
 

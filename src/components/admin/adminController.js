@@ -53,7 +53,7 @@ exports.renderAddAdmin = (req, res) => {
 exports.renderProfile = async (req, res) => {
   try {
     const admins = await service.getAll();
-    res.render('profile', { admins });
+    res.render('profile', { admins});
   } catch (e) {
     res.status(500).json({ message: e.message });
   }
@@ -70,6 +70,7 @@ exports.insert = async (req, res) => {
   try {
     const newAccount = await service.insert(req.body);
     res.redirect('/admin/profile');
+    req.flash('success','Sign up successfully');
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
