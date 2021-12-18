@@ -59,3 +59,17 @@ exports.delete = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 }
+/**
+ * CHƯA LÀM NÚT THÊM SẢN PHẨM VÀ HỦY TRONG HBS, CÒN LẠI T LÀM R NHA CHÚ BA <3
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
+exports.edit = async (req, res) => {
+  try {
+    const order = await service.get(req.params.id);
+    res.render('order/views/edit_order', { order });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

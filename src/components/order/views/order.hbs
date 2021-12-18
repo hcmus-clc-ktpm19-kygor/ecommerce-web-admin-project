@@ -42,8 +42,8 @@
                     <td>{{this.shipping_fee}}đ</td>
                     <td>{{this.customer_id}}</td>
                     <td class="project-actions text-md-center">
-                      <form method="POST" action="/products/{{this._id}}?_method=DELETE">
-                        <a class="btn btn-info btn-sm" href="/products/{{this._id}}">
+                      <form action="/order/{{product._id}}?_method=PUT" method="POST">
+                        <a class="btn btn-info btn-sm" href="/order/edit-product/{{this._id}}">
                           <i class="fas fa-pencil-alt">
                           </i>
                           Edit
