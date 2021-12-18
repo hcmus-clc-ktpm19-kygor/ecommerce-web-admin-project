@@ -1,6 +1,10 @@
-const model = require('./adminModel');
 const bcrypt = require('bcrypt');
 const faker = require('faker');
+const ObjectId = require('mongoose').Types.ObjectId;
+
+const model = require('./adminModel');
+
+const adminService = require("./adminService");
 
 /**
  * Lay admin len tu database bang id
@@ -34,12 +38,12 @@ module.exports.getByUsername = async (username) => {
 
 /**
  * Xac thuc passsword
- * @param user user da dang nhap
+ * @param userPassword
  * @param password password nhap vao
  * @returns {Promise<*>}
  */
-module.exports.validatePassword = async (user, password) => {
-  return await bcrypt.compare(password, user.password);
+module.exports.validatePassword = async (userPassword, password) => {
+  return await bcrypt.compare(password, userPassword);
 }
 
 /**
@@ -67,7 +71,7 @@ exports.paging = async (page) => {
  */
 module.exports.getAll = async () => {
   try {
-    return await model.find();
+    return await model.find().lean();
   } catch (err) {
     throw err;
   }
@@ -96,20 +100,42 @@ module.exports.insert = async (newAdmin) => {
 /**
  * Cap nhat thong tin tai khoan co trong database
  *
- * @param username
+ * @param id
  * @param updateAccount
  * @returns {Promise<{address, phone, name, email}>}
  */
-exports.update = async (username, updateAccount) => {
+exports.update = async (id, updateAccount) => {
   try {
-    const { name, phone, address, email } = await model.findOneAndUpdate({ username }, updateAccount,
-        { new: true });
+    const { name, phone, address, email } = await model.findByIdAndUpdate(
+      id,
+      updateAccount,
+      { new: true }
+    );
 
     return { name, phone, address, email };
   } catch (err) {
     throw err;
   }
-}
+};
+
+exports.changePassword = async (id, newPassword) => {
+  try {
+    const { old_password, new_password, confirm_password } = newPassword;
+    const admin = await model.findById(ObjectId.createFromHexString(id));
+
+    const isPasswordValid = await adminService.validatePassword(admin.password, old_password);
+    if (!isPasswordValid) {
+      return "Mật khẩu cũ không hợp lệ";
+    }
+    if (new_password !== confirm_password) {
+      return "Xác nhận mật khẩu mới không hợp lệ";
+    }
+
+    await model.findByIdAndUpdate(id, { password: await bcrypt.hash(new_password, 10)});
+  } catch (err) {
+    throw err;
+  }
+};
 
 /**
  * Tim tai khoan bang id xoa khoi database

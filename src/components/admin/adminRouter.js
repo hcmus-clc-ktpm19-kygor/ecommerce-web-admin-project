@@ -13,7 +13,8 @@ router.post('/', controller.insert);
 // router.post('/generate-fake-data', controller.generateFakeData);
 
 // PUT Method
-router.put('/:username', controller.update);
+router.put('/:id', controller.update);
+router.put('/change-password/:id', controller.changePassword);
 
 // DELETE Method
 router.delete('/:id', controller.delete);

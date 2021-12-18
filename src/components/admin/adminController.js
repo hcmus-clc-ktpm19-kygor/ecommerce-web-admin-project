@@ -50,8 +50,13 @@ exports.renderAddAdmin = (req, res) => {
  */
 exports.renderProfile = async (req, res) => {
   try {
+    const invalidPasswordMess = req.query['invalid-password'] ?? null;
     const admins = await service.getAll();
-    res.render('admin/views/profile', { admins, message: req.flash('success') });
+    res.render("admin/views/profile", {
+      admins,
+      ["invalid-password-mess"]: invalidPasswordMess,
+      message: req.flash("success"),
+    });
   } catch (e) {
     res.status(500).json({ message: e.message });
   }
@@ -84,11 +89,24 @@ exports.insert = async (req, res) => {
  */
 exports.update = async (req, res) => {
   try {
-    await service.update(req.params.username, req.body);
-    res.redirect('/admin/profile');
+    await service.update(req.params.id, req.body);
+    res.redirect("/admin/profile");
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
+}
+exports.changePassword = async (req, res) => {
+  try {
+    const mess = await service.changePassword(req.params.id, req.body);
+    if (typeof mess === "string") {
+      res.redirect(`/admin/profile?invalid-password=${mess}`);
+    } else {
+      res.redirect('/logout');
+    }
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+  
 }
 
 //---------------------------------DELETE METHOD--------------------------------------------//
