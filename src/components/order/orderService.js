@@ -15,7 +15,7 @@ exports.get = async (id) => {
 
 exports.getAll = async () => {
   try {
-    return await model.find();
+    return await model.find().lean();
   } catch (err) {
     throw err;
   }

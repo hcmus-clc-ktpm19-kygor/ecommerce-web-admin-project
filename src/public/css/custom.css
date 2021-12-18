@@ -46,7 +46,7 @@
 
 .custom-toggle.active span:nth-child(2) {
   width: 25px;
-  transform: translateY(5px) rotate(315deg);
+  transform: translateY(5.1px) rotate(315deg);
   transition-delay: 0.25s;
 }
 

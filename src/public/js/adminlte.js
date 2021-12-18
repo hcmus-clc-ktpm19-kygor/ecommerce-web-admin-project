@@ -2022,12 +2022,18 @@
       if ($__default['default'](window).width() <= this._options.autoCollapseSize) {
         if (!$bodySelector.hasClass(CLASS_NAME_OPEN$3)) {
           this.collapse();
+
+          let menuToggle = document.querySelector(".custom-toggle");
+          menuToggle.classList.toggle("active");
         }
       } else if (resize === true) {
         if ($bodySelector.hasClass(CLASS_NAME_OPEN$3)) {
           $bodySelector.removeClass(CLASS_NAME_OPEN$3);
         } else if ($bodySelector.hasClass(CLASS_NAME_CLOSED)) {
           this.expand();
+
+          let menuToggle = document.querySelector(".custom-toggle");
+          menuToggle.classList.toggle("active");
         }
       }
     };
