@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET admin add. */
+/* GET partner add. */
 router.get('/', function(req, res, next) {
-    res.render('admin/views/add_admin');
+    res.render('partner/views/add_admin');
 });
 
 

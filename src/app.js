@@ -8,21 +8,26 @@ const logger = require('morgan');
 const methodOverride = require('method-override');
 
 const session = require('express-session');
-const passport = require("./config/passport");
+const passport = require("./config/passport.config");
 const flash = require('connect-flash');
 
 const indexRouter = require('./routes/index');
 
 const authRouter = require('./components/auth/authRouter');
-const adminRouter = require('./components/admin/adminRouter');
+const adminRouter = require('./components/partner/partnerRouter');
 const orderRouter = require('./components/order/orderRouter');
 const productRouter = require('./components/product/productRouter');
 
 const loggedInGuard = require('./middlewares/loggedInGuard');
 
 // try to connect to database
-const db = require('./config/database');
-db.connect();
+const { sequelize } = require('./config/database.config');
+sequelize.authenticate()
+  .then(() => console.log("Connection has been established successfully."))
+  .catch((error) => {
+    console.error(error.message);
+    process.exit(-1);
+  })
 
 const app = express();
 
@@ -60,7 +65,7 @@ app.use(function (req, res, next) {
 app.use('/', indexRouter);
 app.use('/products', productRouter);
 app.use('/order', orderRouter);
-app.use('/admin',adminRouter);
+app.use('/partner',adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

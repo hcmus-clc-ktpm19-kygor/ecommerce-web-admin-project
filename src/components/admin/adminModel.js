@@ -1,17 +1,21 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { sequelize, DataTypes } = require('../../config/database.config');
 
-const adminSchema = new Schema({
+const admin = sequelize.define('ADMINISTRATOR', {
   // Schema attributes are defined here
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  name: String,
-  phone: { type: String, required: true },
-  address: String,
-  email: String,
-  avatar_url: String,
-  account_status: { type: Boolean, default: true },
-}, { timestamps: true, versionKey: false });
+  id: {
+    field: 'MA_ADMIN',
+    type: DataTypes.UUID,
+    primaryKey: true
+  },
+  name: { field: 'HO_TEN', type: DataTypes.STRING },
+  phone: { field: 'SDT', type: DataTypes.STRING },
+  address: { field: 'DIA_CHI', type: DataTypes.STRING},
+  email: { field: 'EMAIL', type: DataTypes.STRING }
+}, { timestamps: false, freezeTableName: true });
 
-// Create account model in db
-module.exports = mongoose.model('admin', adminSchema, 'admin');
+admin.sync()
+  .then(() => console.log('The table for the ADMINISTRATOR model was just created!'))
+  .catch((error) => console.error(error.message))
+
+// Create customer model in db
+module.exports = admin;

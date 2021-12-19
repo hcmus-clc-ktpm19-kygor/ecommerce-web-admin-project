@@ -1,4 +1,4 @@
-const adminService = require('../admin/adminService');
+const adminService = require('../partner/partnerService');
 
 /**
  * Render trang Login

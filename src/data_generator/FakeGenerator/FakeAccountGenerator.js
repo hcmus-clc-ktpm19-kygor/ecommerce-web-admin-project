@@ -1,4 +1,4 @@
-const model = require("../../components/admin/adminModel");
+const model = require("../../components/partner/partnerModel");
 const faker = require("faker");
 
 /**

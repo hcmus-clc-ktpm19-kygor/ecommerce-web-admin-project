@@ -1,155 +1,53 @@
-const bcrypt = require('bcrypt');
-const faker = require('faker');
-const ObjectId = require('mongoose').Types.ObjectId;
-
 const model = require('./adminModel');
 
-const adminService = require("./adminService");
-
 /**
- * Lay admin len tu database bang id
- * @param id {@link mongoose.Types.ObjectId}
- * @returns {Promise<*|{mess: string}>}
+ * Lay 1 customer len bang id
+ * @param id
+ * @returns {Promise<{mess: string}|Model<TModelAttributes, TCreationAttributes>>}
  */
-module.exports.getById = async (id) => {
+exports.get = async (id) => {
   try {
-    const account = await model.findById(id);
-    if (account === null) {
-      return { mess: `Account id '${id}' not found` };
+    const admin = await model.findByPk(id);
+    if (admin === null) {
+      return { mess: `Admin id '${id}' not found` };
     }
-    return account;
+    return admin;
   } catch (err) {
     throw err;
   }
 };
 
 /**
- * Lay admin len tu database bang username
- * @returns {Promise<*|{mess: string}>}
- * @param username
- */
-module.exports.getByUsername = async (username) => {
-  try {
-    return await model.findOne({ username });
-  } catch (err) {
-    throw err;
-  }
-};
-
-/**
- * Xac thuc passsword
- * @param userPassword
- * @param password password nhap vao
- * @returns {Promise<*>}
- */
-module.exports.validatePassword = async (userPassword, password) => {
-  return await bcrypt.compare(password, userPassword);
-}
-
-/**
- * Phan trang cac account, moi trang 5 admin
- * @param page
- * @returns {Promise<void>}
- */
-exports.paging = async (page) => {
-  try {
-    let perPage = 5; // số lượng sản phẩm xuất hiện trên 1 page
-    page = page || 1;
-
-    return await model
-    .find() // find tất cả các data
-    .skip((perPage * page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
-    .limit(perPage);
-  } catch (err) {
-    throw err;
-  }
-};
-
-/**
- * Lay 1 list cac admin tu database
- * @returns {Promise<[account: model]>}
- */
-module.exports.getAll = async () => {
-  try {
-    return await model.find().lean();
-  } catch (err) {
-    throw err;
-  }
-};
-
-/**
- * Them san pham moi vao database
- * @returns {Promise<{await: *}>}
+ * Them 1 customer moi vao database
  * @param newAdmin
+ * @returns {Promise<Model<TModelAttributes, TCreationAttributes>>}
  */
-module.exports.insert = async (newAdmin) => {
+exports.insert = async (newAdmin) => {
   try {
-    const rawPassword = faker.internet.password();
-
-    newAdmin.username = newAdmin.email;
-    newAdmin.password = await bcrypt.hash(rawPassword, 10);
-
-    const admin = new model(newAdmin);
-    const addedAdmin = await admin.save();
-    return { admin: addedAdmin , rawPassword };
+    const customer = model.build(newAdmin);
+    return await customer.save();
   } catch (err) {
     throw err;
   }
 }
 
 /**
- * Cap nhat thong tin tai khoan co trong database
+ * Cap nhat thong tin khach hang co trong database
  *
  * @param id
- * @param updateAccount
- * @returns {Promise<{address, phone, name, email}>}
+ * @param updateCustomer
+ * @returns {Promise<[Model<TModelAttributes, TCreationAttributes>, boolean]>}
  */
-exports.update = async (id, updateAccount) => {
+exports.update = async (id, updateCustomer) => {
   try {
-    const { name, phone, address, email } = await model.findByIdAndUpdate(
-      id,
-      updateAccount,
-      { new: true }
-    );
+    delete updateCustomer.dob;
+    delete updateCustomer.sex;
 
-    return { name, phone, address, email };
-  } catch (err) {
-    throw err;
-  }
-};
+    await model.update(updateCustomer, {
+      where: { id },
+    });
 
-exports.changePassword = async (id, newPassword) => {
-  try {
-    const { old_password, new_password, confirm_password } = newPassword;
-    const admin = await model.findById(ObjectId.createFromHexString(id));
-
-    const isPasswordValid = await adminService.validatePassword(admin.password, old_password);
-    if (!isPasswordValid) {
-      return "Mật khẩu cũ không hợp lệ";
-    }
-    if (new_password !== confirm_password) {
-      return "Xác nhận mật khẩu mới không hợp lệ";
-    }
-
-    await model.findByIdAndUpdate(id, { password: await bcrypt.hash(new_password, 10)});
-  } catch (err) {
-    throw err;
-  }
-};
-
-/**
- * Tim tai khoan bang id xoa khoi database
- * @param id
- * @returns {Promise<*>}
- */
-exports.delete = async (id) => {
-  try {
-    const admin = await model.findById(id);
-
-    if (admin.username !== 'admin') {
-      return await model.findByIdAndDelete(id, { new: true });
-    }
-    return null;
+    return await model.findOne( { where: { id }, raw: true } );
   } catch (err) {
     throw err;
   }

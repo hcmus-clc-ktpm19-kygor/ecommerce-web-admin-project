@@ -1,87 +1,38 @@
 const service = require('./adminService');
 
-//---------------------------------GET METHOD--------------------------------------------//
 /**
- * Lay 1 tai khoan len bang id
- *
- * @param req request
- * @param res respone
+ * Lay 1 customer len bang id
+ * @param req
+ * @param res
  * @returns {Promise<void>}
  */
 exports.get = async (req, res) => {
   try {
-    const account = await service.getById(req.params.id);
-    res.json(account);
+    const customer = await service.get(req.params.id);
+    res.json(customer);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
 /**
- * Phan trang
- * @param req request
- * @param res response
- * @returns {Promise<void>}
- */
-exports.paging = async (req, res) => {
-  try {
-    const accounts = await service.paging(req.query.page);
-    res.json(accounts);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-}
-
-
-/**
- * Render trang them admin
- * @param req request
- * @param res response
- * @returns {Promise<void>}
- */
-exports.renderAddAdmin = (req, res) => {
-  res.render('admin/views/add_admin');
-}
-
-/**
- * Render profile
- * @param req request
- * @param res response
- */
-exports.renderProfile = async (req, res) => {
-  try {
-    const invalidPasswordMess = req.query['invalid-password'] ?? null;
-    const admins = await service.getAll();
-    res.render("admin/views/profile", {
-      admins,
-      ["invalid-password-mess"]: invalidPasswordMess,
-      message: req.flash("success"),
-    });
-  } catch (e) {
-    res.status(500).json({ message: e.message });
-  }
-}
-//---------------------------------POST METHOD--------------------------------------------//
-/**
- * Them account moi vao database tra ket qua neu thanh cong
+ * Them 1 customer moi vao database
  *
- * @param req request
- * @param res response
+ * @param req
+ * @param res
  * @returns {Promise<void>}
  */
 exports.insert = async (req, res) => {
   try {
-    const { admin, rawPassword } = await service.insert(req.body);
-    req.flash('success', `Password của ${admin.email}: ${rawPassword}`);
-    res.redirect('/admin/profile');
+    const newCustomer = await service.insert(req.body);
+    res.status(201).json(newCustomer);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 }
 
-//---------------------------------PUT METHOD--------------------------------------------//
 /**
- * Tim va Update account da co trong database tra ket qua neu thanh cong
+ * Tim va Update khach hang da co trong database tra ket qua neu thanh cong
  *
  * @param req request
  * @param res response
@@ -89,39 +40,13 @@ exports.insert = async (req, res) => {
  */
 exports.update = async (req, res) => {
   try {
-    await service.update(req.params.id, req.body);
-    res.redirect("/admin/profile");
+    req.session.passport.user = {
+      ...req.session.passport.user,
+      ...await service.update(req.params.id, req.body)
+    };
+    // res.json(updatedCustomer);
+    res.redirect(`/account/${req.params.id}`);
   } catch (err) {
     res.status(400).json({ message: err.message });
-  }
-}
-exports.changePassword = async (req, res) => {
-  try {
-    const mess = await service.changePassword(req.params.id, req.body);
-    if (typeof mess === "string") {
-      res.redirect(`/admin/profile?invalid-password=${mess}`);
-    } else {
-      res.redirect('/logout');
-    }
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-  
-}
-
-//---------------------------------DELETE METHOD--------------------------------------------//
-/**
- * Tim va xoa tai khoan trong database
- *
- * @param req request
- * @param res response
- * @returns {Promise<void>}
- */
-exports.delete = async (req, res) => {
-  try {
-    await service.delete(req.params.id);
-    res.redirect('/admin/profile');
-  } catch (err) {
-    res.status(500).json({ message: err.message });
   }
 }

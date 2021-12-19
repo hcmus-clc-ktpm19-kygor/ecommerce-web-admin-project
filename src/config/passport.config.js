@@ -1,8 +1,8 @@
-const passport = require('passport');
+const passportConfig = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const adminService = require('../components/admin/adminService');
+const adminService = require('../components/partner/partnerService');
 
-passport.use(new LocalStrategy(
+passportConfig.use(new LocalStrategy(
     async (username, password, done) => {
       const user = await adminService.getByUsername(username);
       if (!user) {
@@ -15,19 +15,14 @@ passport.use(new LocalStrategy(
     }
 ));
 
-passport.serializeUser(function(user, done) {
+passportConfig.serializeUser(function(user, done) {
   done(null, {
     username: user.username,
-    name: user.name,
-    phone: user.phone,
-    address: user.address,
-    email: user.email
   });
 });
 
-passport.deserializeUser(async function(user, done) {
-  const admin = await adminService.getByUsername(user.username);
-  done(null, admin);
+passportConfig.deserializeUser(async function(user, done) {
+  done(null, user.username);
 });
 
-module.exports = passport;
+module.exports = passportConfig;
