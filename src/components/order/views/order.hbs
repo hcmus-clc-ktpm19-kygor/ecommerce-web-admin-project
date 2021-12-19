@@ -29,7 +29,7 @@
                     <th>Trạng thái</th>
                     <th>Giá</th>
                     <th>Phí vận chuyển</th>
-                    <th>Mã khách hàng</th>
+                    <th>SĐT khách hàng</th>
                     <th> </th>
                   </tr>
                   </thead>
@@ -40,15 +40,15 @@
                     <td>{{this.status}}</td>
                     <td>{{this.price}}đ</td>
                     <td>{{this.shipping_fee}}đ</td>
-                    <td>{{this.customer_id}}</td>
+                    <td>{{this.customer.phone}}</td>
                     <td class="project-actions text-md-center">
-                      <form action="/order/{{product._id}}?_method=PUT" method="POST">
-                        <a class="btn btn-info btn-sm" href="/order/edit-product/{{this._id}}">
+                      <form action="/order/{{this._id}}?_method=DELETE" method="POST">
+                        <a class="btn btn-info btn-sm" href="/order/{{this._id}}">
                           <i class="fas fa-pencil-alt">
                           </i>
-                          Edit
+                          Chi tiết
                         </a>
-                        <input class="btn btn-danger btn-sm" type="submit" value="Delete">
+                        <input class="btn btn-danger btn-sm" type="submit" value="Huỷ đơn">
                       </form>
                     </td>
                   </tr>

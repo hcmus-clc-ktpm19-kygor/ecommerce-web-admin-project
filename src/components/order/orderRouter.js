@@ -14,7 +14,5 @@ router.put('/:id', controller.update);
 
 // DELETE Method
 router.delete('/:id', controller.delete);
-// Render edit product page
-router.get('/edit-product/:id', controller.edit);
 
 module.exports = router;

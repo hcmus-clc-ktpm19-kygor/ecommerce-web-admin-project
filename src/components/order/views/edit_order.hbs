@@ -13,7 +13,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <form action="/products" method="POST">
+        <form action="/order/{{order._id}}?_method=PUT" method="POST">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-primary">
@@ -29,35 +29,45 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="inputName">Tên đơn hàng</label>
-                                <input type="text" id="inputName" name="category" class="form-control" value="{{order.name}}" readonly>
+                                <input type="text" id="inputName" name="name" class="form-control" value="{{order.name}}" readonly>
                             </div>
                         <div class="form-group">
                              <label for="inputState">Trạng thái</label>
-                                <select class="custom-select rounded-0" id="inputState">
-                                    <option selected>Hoàn thành</option>
-                                    <option>Đang giao</option>
-                                    <option>Đang chờ</option>
+                                <select class="custom-select rounded-0" name="status" id="inputStatus">
+                                    {{#if (is_equals order.status "Hoàn thành")}}
+                                        <option selected value="Hoàn thành">Hoàn thành</option>
+                                        <option value="Đang giao">Đang giao</option>
+                                        <option value="Đang chờ">Đang chờ</option>
+                                    {{else if (is_equals order.status "Đang giao")}}
+                                        <option value="Hoàn thành">Hoàn thành</option>
+                                        <option selected value="Đang giao">Đang giao</option>
+                                        <option value="Đang chờ">Đang chờ</option>
+                                    {{else}}
+                                        <option value="Hoàn thành">Hoàn thành</option>
+                                        <option value="Đang giao">Đang giao</option>
+                                        <option selected value="Đang chờ">Đang chờ</option>
+                                    {{/if}}
                                 </select>
                          </div>
                             <div class="form-group">
                                 <label for="inputOrgin">Giá</label>
-                                <input type="text" id="inputOrgin" name="origin" class="form-control" value="{{order.price}}"  readonly>
+                                <input type="text" id="inputOrgin" name="price" class="form-control" value="{{order.price}}"  readonly>
                             </div>
                             <div class="form-group">
                                 <label for="inputMaint">Phí vận chuyển</label>
-                                <input type="number" id="inputMaint" name="insurance" class="form-control" value="{{order.shipping_fee}}"  readonly>
+                                <input type="number" id="inputMaint" name="shipping_fee" class="form-control" value="{{order.shipping_fee}}"  readonly>
                             </div>
                             <div class="form-group">
                                 <label for="inputColor">Địa chỉ</label>
-                                <input type="text" id="inputColor" name="color" class="form-control" value="{{order.address}}"  readonly>
+                                <input type="text" id="inputColor" name="address" class="form-control" value="{{order.address}}"  readonly>
                             </div>
                             <div class="form-group">
-                                <label for="inputStock">Mã khách hàng</label>
-                                <input type="number" id="inputStock" name="stock" class="form-control" value="{{order.customer_id}}"  readonly>
+                                <label for="inputStock">Tên khách hàng</label>
+                                <input type="text" id="inputStock" name="customer_name" class="form-control" value="{{order.customer.customer_name}}"  readonly>
                             </div>
                             <div class="form-group">
                                 <label for="inputProducer">Hình thức thanh toán</label >
-                                <input type="text" id="inputProducer" name="producer" class="form-control" value="{{order.payment}}"  readonly>
+                                <input type="text" id="inputProducer" name="payment" class="form-control" value="{{order.payment}}"  readonly>
                             </div>
 
                         </div>
@@ -66,8 +76,8 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <a href="/products" class="btn btn-secondary">Hủy</a>
-                        <input type="submit" value="Thêm sản phẩm" class="btn btn-success float-right">
+                        <a href="/order" class="btn btn-secondary">Hủy</a>
+                        <input type="submit" value="Cập nhật" class="btn btn-success float-right">
                     </div>
                 </div>
         </form>

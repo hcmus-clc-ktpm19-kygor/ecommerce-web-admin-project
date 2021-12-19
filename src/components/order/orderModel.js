@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const orderSchema = new Schema( {
   // Schema attributes are defined here
   name: { type: String },
-  order_status: { type: String },
+  status: { type: String },
   shipping_fee: { type: Number },
   price: Number,
   address: String,
-  customer_id: { type: mongoose.Types.ObjectId },
+  customer: Object,
   payment: String
 }, { timestamps: true, versionKey: false });
 

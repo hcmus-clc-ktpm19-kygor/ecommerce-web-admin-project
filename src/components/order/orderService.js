@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 
 exports.get = async (id) => {
   try {
-    const order = await model.findById(mongoose.Types.ObjectId.createFromHexString(id));
+    const order = await model.findById(id).lean();
     if (order === null) {
-      return {mess: `Order id '${req.params.id}' not found`};
+      return {mess: `Order id '${id}' not found`};
     }
     return order;
   } catch (err) {

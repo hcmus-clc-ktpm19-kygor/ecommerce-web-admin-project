@@ -3,7 +3,7 @@ const service = require('./orderService');
 exports.get = async (req, res) => {
   try {
     const order = await service.get(req.params.id);
-    res.json(order);
+    res.render('order/views/edit_order', { order });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -37,8 +37,8 @@ exports.insert = async (req, res) => {
  */
 exports.update = async (req, res) => {
   try {
-    const updatedOrder = await service.update(req.params.id, req.body);
-    res.json(updatedOrder);
+    await service.update(req.params.id, req.body);
+    res.redirect('/order');
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -54,22 +54,8 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     await service.delete(req.params.id);
-    res.json({message: `Order ${req.params.id} has been deleted`});
+    res.redirect('/order');
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 }
-/**
- * CHƯA LÀM NÚT THÊM SẢN PHẨM VÀ HỦY TRONG HBS, CÒN LẠI T LÀM R NHA CHÚ BA <3
- * @param req
- * @param res
- * @returns {Promise<void>}
- */
-exports.edit = async (req, res) => {
-  try {
-    const order = await service.get(req.params.id);
-    res.render('order/views/edit_order', { order });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
