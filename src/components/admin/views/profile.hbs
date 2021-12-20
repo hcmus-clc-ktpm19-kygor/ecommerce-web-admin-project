@@ -1,247 +1,256 @@
-
 <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-1">
-        {{#if message}}
-           <div class="alert alert-danger">{{message}}</div>
-        {{/if}}
-        </div>
-      </div><!-- /.container-fluid -->
+        <div class="container-fluid">
+            <div class="row mb-1">
+                {{#if message}}
+                    <div class="alert alert-danger">{{message}}</div>
+                {{/if}}
+            </div>
+        </div><!-- /.container-fluid -->
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
 
-            <!-- Profile Image -->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Ảnh đại diện</h3>
-              </div>
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="card-img-top img-circle img-fluid"
-                       src="{{admin.avatar_url}}"
-                       alt="User profile picture"
-                       style="max-height: 200px; max-width: 200px">
-                </div>
-
-                <h3 class="profile-username text-center">{{admin.username}}</h3>
-
-                <p class="text-muted text-center">Quản trị viên</p>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- About Me Box -->
-            <div class="card card-warning">
-              <div class="card-header">
-                <h3 class="card-title">Thông tin cá nhân</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <strong><i class="fas fa-book mr-1"></i> Họ và tên</strong>
-
-                <p class="text-muted">
-                  {{admin.name}}
-                </p>
-
-                <hr>
-
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Số điện thoại</strong>
-
-                <p class="text-muted">{{admin.phone}}</p>
-
-                <hr>
-
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Địa chỉ</strong>
-
-                <p class="text-muted">{{admin.address}}</p>
-
-                <hr>
-
-                <strong><i class="far fa-file-alt mr-1"></i> Email</strong>
-
-                <p class="text-muted">{{admin.email}}</p>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-            <!-- Log out-->
-            <div class="card bg-white">
-                <a class="text-light btn btn-danger btn-lg" href="/logout">Đăng xuất</a>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-
-          <!-- /.col -->
-          <div class="col-md-9">
-            <div class="card">
-              <div class="card-header p-2">
-                <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link " href="#activity" data-toggle="tab">Lịch sử</a></li>
-                  <li class="nav-item"><a class="nav-link " href="#list" data-toggle="tab">Danh sách quản trị viên</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Chỉnh sửa thông tin</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#password" data-toggle="tab">Đổi mật khẩu</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#avatar" data-toggle="tab">Đổi ảnh đại diện</a></li>
-                </ul>
-              </div><!-- /.card-header -->
-              <div class="card-body">
-                <div class="tab-content">
-                  <div class="tab-pane" id="activity">
-                        <p>Log xem ai đã làm gì nè</p>
-                  </div>
-                  <div class="tab-pane" id="list">
-                        <div class="row">
-                          <div class="col-12">
-                              <!-- /.card-header -->
-                                <table id="example" class="table table-bordered table-striped">
-                                  <thead>
-                                  <tr>
-                                    <th>ID (Email)</th>
-                                    <th>Tên</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Địa chỉ</th>
-                                    <th> </th>
-                                  </tr>
-                                  </thead>
-                                  <tbody>
-                                  {{#each admins}}
-                                  <tr>
-                                    <td>{{this.email}}</td>
-                                    <td>{{this.name}}</td>
-                                    <td>{{this.phone}}</td>
-                                    <td>{{this.address}}</td>
-                                    <td class="project-actions text-md-center">
-                                      <form action="/admin/{{this._id}}?_method=DELETE" method="POST">
-                                        <input class="btn btn-danger btn-sm" type="submit" value="Delete">
-                                      </form>
-                                    </td>
-                                  </tr>
-                                  {{/each}}
-                                  </tbody>
-                                </table>
-                              <!-- /.card-body -->
-                          </div>
-                          <!-- /.col -->
+                    <!-- Profile Image -->
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Ảnh đại diện</h3>
                         </div>
-                        <!-- /.row -->
-                  </div>
-                  <div class="tab-pane" id="settings">
-                    <form class="form-horizontal" action="/admin/{{admin._id}}?_method=PUT" method="POST">
-                      <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Họ và tên</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName" name="name" value="{{admin.name}}">
+                        <div class="card-body box-profile">
+                            <form action="/admin/change-avatar/{{admin._id}}?_method=PUT" enctype="multipart/form-data"
+                                  method="POST">
+                                <div class="d-flex justify-content-center">
+                                    <img class="card-img-top img-circle img-fluid"
+                                         src="{{admin.avatar_url}}"
+                                         alt="User profile picture"
+                                         id="avatar">
+                                    <input id="image" name="avatar_url" style="display: none;" type="file"
+                                           accept=".jpg,.jpeg,.png">
+                                </div>
+
+                                <h3 class="profile-username text-center">{{admin.username}}</h3>
+
+                                <p class="text-muted text-center">Quản trị viên</p>
+
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <button type="submit" class="btn btn-primary">Lưu Ảnh Đại Diện</button>
+                                </div>
+                            </form>
                         </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputPhone" class="col-sm-2 col-form-label">Số điện thoại</label>
-                        <div class="col-sm-10">
-                          <input type="tel" pattern="[0-9]{10}" class="form-control" id="inputPhone" name="phone" value="{{admin.phone}}">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputAddress" class="col-sm-2 col-form-label">Địa chỉ</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputAddress" name="address" value="{{admin.address}}">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" name="email" value="{{admin.email}}">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Chỉnh sửa</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="tab-pane" id="password">
-                    <form class="form-horizontal" action="/admin/change-password/{{admin._id}}?_method=PUT" method="POST">
-                      <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Mật khẩu cũ</label>
-                        <div class="col-sm-10">
-                          <input type="password" class="form-control" id="input-old-password" name="old_password">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputPhone" class="col-sm-2 col-form-label">Mật khẩu mới</label>
-                        <div class="col-sm-10">
-                          <input type="password" class="form-control" id="input-new-password" name="new_password">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputAddress" class="col-sm-2 col-form-label">Xác nhận mật khẩu</label>
-                        <div class="col-sm-10">
-                          <input type="password" class="form-control" id="input-confirm-password" name="confirm_password">
-                        </div>
-                      </div>
-                      {{#if invalid-password-mess}}
-                      <div class="form-group row">
-                          <div class="offset-sm-2 col-sm-10" style="color: red;">
-                            {{invalid-password-mess}}
-                          </div>
-                      </div>
-                      {{/if}}
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Đổi mật khẩu</button>
-                        </div>
-                    </form>
-                  </div>
-                  <div class="tab-pane" id="avatar">
-                  <form>
-                   <div class="form-group row">
-                      <label for="inputAvatar" class=" col-sm-4 col-form-label">Chọn ảnh đại diện mới</label>
-                      <div class="col-sm-10">
-                         <input type="file" id="inputAvatar" name="avatar" accept="image/*" onchange="loadFile(event)" required>
-                      </div>
-                   </div>
-                   <div class="form-group row">
-                   <label for="output" class="col-sm-4 col-form-label">Xem trước</label>
-                   <img class="card-img-top img-circle img-fluid"
-                        id="output"
-                        src="{{admin.avatar_url}}"
-                        style="max-height: 200px; max-width: 200px">
-                   </div>
-                   <div class="form-group row">
-                    <div class="col-md-10 text-center">
-                       <button type="submit" class="btn btn-danger">Đổi ảnh đại diện</button>
+                        <!-- /.card-body -->
                     </div>
-                   </div>
-                  </form>
-                  </div>
-                  <!-- /.tab-pane -->
+                    <!-- /.card -->
+
+                    <!-- About Me Box -->
+                    <div class="card card-warning">
+                        <div class="card-header">
+                            <h3 class="card-title">Thông tin cá nhân</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <strong><i class="fas fa-book mr-1"></i> Họ và tên</strong>
+
+                            <p class="text-muted">
+                                {{admin.name}}
+                            </p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Số điện thoại</strong>
+
+                            <p class="text-muted">{{admin.phone}}</p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Địa chỉ</strong>
+
+                            <p class="text-muted">{{admin.address}}</p>
+
+                            <hr>
+
+                            <strong><i class="far fa-file-alt mr-1"></i> Email</strong>
+
+                            <p class="text-muted">{{admin.email}}</p>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <!-- Log out-->
+                    <div class="card bg-white">
+                        <a class="text-light btn btn-danger btn-lg" href="/logout">Đăng xuất</a>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
                 </div>
-                <!-- /.tab-content -->
-              </div><!-- /.card-body -->
+
+                <!-- /.col -->
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header p-2">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item"><a class="nav-link " href="#activity" data-toggle="tab">Lịch sử</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link " href="#list" data-toggle="tab">Danh sách quản
+                                    trị viên</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Chỉnh sửa
+                                    thông tin</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#password" data-toggle="tab">Đổi mật
+                                    khẩu</a></li>
+                            </ul>
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="tab-pane" id="activity">
+                                    <p>Log xem ai đã làm gì nè</p>
+                                </div>
+                                <div class="tab-pane" id="list">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <!-- /.card-header -->
+                                            <table id="example" class="table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-center">ID (Email)</th>
+                                                    <th class="text-center">Tên</th>
+                                                    <th class="text-center">Số điện thoại</th>
+                                                    <th class="text-center">Địa chỉ</th>
+                                                    <th class="text-center">Status</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {{#each admins}}
+                                                    <tr>
+                                                        <td class="text-center">{{this.email}}</td>
+                                                        <td class="text-center">{{this.name}}</td>
+                                                        <td class="text-center">{{this.phone}}</td>
+                                                        <td class="text-center">{{this.address}}</td>
+                                                        <td class="project-actions text-md-center">
+                                                            <form action="/admin/{{this._id}}?_method=PATCH"
+                                                                  method="POST">
+                                                                {{#if (eq this.status true)}}
+                                                                    <input class="btn btn-danger btn-sm" type="submit"
+                                                                           name="status"
+                                                                           value="Ban">
+                                                                {{else if (is_equals this.status false)}}
+                                                                    <input class="btn btn-danger btn-sm" type="submit"
+                                                                           name="status"
+                                                                           value="Unban">
+                                                                {{/if}}
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                {{/each}}
+                                                </tbody>
+                                            </table>
+                                            <!-- /.card-body -->
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <div class="tab-pane" id="settings">
+                                    <form class="form-horizontal" action="/admin/{{admin._id}}?_method=PUT"
+                                          method="POST">
+                                        <div class="form-group row">
+                                            <label for="inputName" class="col-sm-2 col-form-label">Họ và tên</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputName" name="name"
+                                                       value="{{admin.name}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputPhone" class="col-sm-2 col-form-label">Số điện
+                                                thoại</label>
+                                            <div class="col-sm-10">
+                                                <input type="tel" pattern="[0-9]{10}" class="form-control"
+                                                       id="inputPhone" name="phone" value="{{admin.phone}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputAddress" class="col-sm-2 col-form-label">Địa chỉ</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputAddress" name="address"
+                                                       value="{{admin.address}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" id="inputEmail" name="email"
+                                                       value="{{admin.email}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <button type="submit" class="btn btn-primary">Chỉnh sửa</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane" id="password">
+                                    <form class="form-horizontal"
+                                          action="/admin/change-password/{{admin._id}}?_method=PUT" method="POST">
+                                        <div class="form-group row">
+                                            <label for="inputName" class="col-sm-2 col-form-label">Mật khẩu cũ</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="input-old-password"
+                                                       name="old_password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputPhone" class="col-sm-2 col-form-label">Mật khẩu mới</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="input-new-password"
+                                                       name="new_password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputAddress" class="col-sm-2 col-form-label">Xác nhận mật
+                                                khẩu</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="input-confirm-password"
+                                                       name="confirm_password">
+                                            </div>
+                                        </div>
+                                        {{#if invalid-password-mess}}
+                                            <div class="form-group row">
+                                                <div class="offset-sm-2 col-sm-10" style="color: red;">
+                                                    {{invalid-password-mess}}
+                                                </div>
+                                            </div>
+                                        {{/if}}
+                                        <div class="offset-sm-2 col-sm-10">
+                                            <button type="submit" class="btn btn-danger">Đổi mật khẩu</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.tab-pane -->
+                            </div>
+                            <!-- /.tab-content -->
+                        </div><!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
             </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+</div>
+<!-- /.content-wrapper -->
 <script>
-var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src) // free memory
-    }
-  };
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
 </script>

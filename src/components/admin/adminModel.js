@@ -10,7 +10,7 @@ const adminSchema = new Schema({
   address: String,
   email: String,
   avatar_url: String,
-  account_status: { type: Boolean, default: true },
+  status: { type: Boolean, default: true },
 }, { timestamps: true, versionKey: false });
 
 // Create account model in db

@@ -3,8 +3,8 @@ const faker = require('faker');
 const ObjectId = require('mongoose').Types.ObjectId;
 
 const model = require('./adminModel');
-
 const adminService = require("./adminService");
+const cloudinary = require('../../config/cloudinary.config');
 
 /**
  * Lay admin len tu database bang id
@@ -106,17 +106,43 @@ module.exports.insert = async (newAdmin) => {
  */
 exports.update = async (id, updateAccount) => {
   try {
-    const { name, phone, address, email } = await model.findByIdAndUpdate(
+    return await model.findByIdAndUpdate(
       id,
       updateAccount,
       { new: true }
-    );
-
-    return { name, phone, address, email };
+    ).lean();
   } catch (err) {
     throw err;
   }
 };
+
+exports.changeAvatar = async (id, file) => {
+  try {
+    // Upload avatar len cloudinary
+    let result;
+    if (file) {
+      result = await cloudinary.uploader.upload(file.path, {
+        public_id: id,
+        folder: "admin_avatar",
+        use_filename: true,
+      });
+    }
+
+    /*
+     Lay avatar url
+     Neu khong co avatar duoc up len, url bo trong
+    */
+    const { url } = result ?? "";
+    // Update user's info
+    await model
+      .findByIdAndUpdate(id, { avatar_url: url }, { new: true })
+      .lean();
+
+    return url;
+  } catch (err) {
+    throw err;
+  }
+}
 
 exports.changePassword = async (id, newPassword) => {
   try {
@@ -142,12 +168,16 @@ exports.changePassword = async (id, newPassword) => {
  * @param id
  * @returns {Promise<*>}
  */
-exports.delete = async (id) => {
+exports.banAdmin = async (id, status) => {
   try {
     const admin = await model.findById(id);
 
     if (admin.username !== 'admin') {
-      return await model.findByIdAndDelete(id, { new: true });
+      return await model.findByIdAndUpdate(
+        id,
+        { status: !admin.status },
+        { new: true }
+      );
     }
     return null;
   } catch (err) {

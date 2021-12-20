@@ -8,7 +8,7 @@ const logger = require('morgan');
 const methodOverride = require('method-override');
 
 const session = require('express-session');
-const passport = require("./config/passport");
+const passport = require("./config/passportconfig");
 const flash = require('connect-flash');
 
 const indexRouter = require('./routes/index');
@@ -21,7 +21,7 @@ const productRouter = require('./components/product/productRouter');
 const loggedInGuard = require('./middlewares/loggedInGuard');
 
 // try to connect to database
-const db = require('./config/database');
+const db = require('./config/database.config');
 db.connect();
 
 const app = express();

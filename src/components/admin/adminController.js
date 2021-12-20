@@ -89,12 +89,22 @@ exports.insert = async (req, res) => {
  */
 exports.update = async (req, res) => {
   try {
-    await service.update(req.params.id, req.body);
+    req.session.passport.user = await service.update(req.params.id, req.body);
     res.redirect("/admin/profile");
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 }
+
+exports.changeAvatar = async (req, res) => {
+  try {
+    req.session.passport.user.avatar_url = await service.changeAvatar(req.params.id, req.file);
+    res.redirect("/admin/profile");
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+}
+
 exports.changePassword = async (req, res) => {
   try {
     const mess = await service.changePassword(req.params.id, req.body);
@@ -109,7 +119,7 @@ exports.changePassword = async (req, res) => {
   
 }
 
-//---------------------------------DELETE METHOD--------------------------------------------//
+//---------------------------------PATCH METHOD--------------------------------------------//
 /**
  * Tim va xoa tai khoan trong database
  *
@@ -117,9 +127,9 @@ exports.changePassword = async (req, res) => {
  * @param res response
  * @returns {Promise<void>}
  */
-exports.delete = async (req, res) => {
+exports.banAdmin = async (req, res) => {
   try {
-    await service.delete(req.params.id);
+    await service.banAdmin(req.params.id, req.body);
     res.redirect('/admin/profile');
   } catch (err) {
     res.status(500).json({ message: err.message });

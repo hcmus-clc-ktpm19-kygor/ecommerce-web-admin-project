@@ -57,3 +57,14 @@
 .custom-toggle.active span:nth-child(3) {
   transform: translateX(60px);
 }
+
+/*avatar*/
+#avatar {
+    max-height: 200px;
+    max-width: 200px;
+    cursor: pointer
+}
+#avatar:hover {
+    opacity: 0.6;
+    transition: 0.5s;
+}
