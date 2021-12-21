@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="src/public/css/img.scss">
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -132,7 +133,8 @@
                         <!-- /.card -->
                 </div>
                     <div class="col-md-6">
-                        <div class="card card-secondary">
+                    <div class="row">
+                        <div class="card card-warning">
                             <div class="card-header">
                                 <h3 class="card-title">Giá cả</h3>
 
@@ -169,7 +171,29 @@
                         </div>
                         <!-- /.card -->
                     </div>
-                </div>
+                    <div class="row-md-6">
+
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Hình ảnh sán phẩm</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                               <div class="form-group">
+                                      <label for="Image" class="form-label">Tải hình ảnh sản phẩm</label>
+                                      <input class="form-control" type="file" id="formFile" onchange="preview()">
+                                      <img id="frame" src="" class="img-fluid" />
+                               </div>
+                           </div>
+                        </div>
+                    </div>
+                    </div>
                 <div class="row">
                     <div class="col-12">
                         <a href="/products" class="btn btn-secondary">Hủy</a>
@@ -181,3 +205,12 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script>
+     function preview() {
+     frame.src = URL.createObjectURL(event.target.files[0]);
+     }
+     function clearImage() {
+     document.getElementById('formFile').value = null;
+     frame.src = "";
+     }
+</script>
