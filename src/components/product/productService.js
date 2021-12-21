@@ -1,4 +1,5 @@
 const model = require("./productModel");
+const { option } = require("handlebars-helpers/lib/misc");
 
 /**
  * Lay 1 product bang id <br>
@@ -7,13 +8,9 @@ const model = require("./productModel");
  * @param id {@link String}
  * @returns {Promise<{product: model}|{mess: string}>}
  */
-exports.get = async (id) => {
+exports.getById = async (id) => {
   try {
-    const product = await model.findByPk(id);
-    if (product === null) {
-      return { mess: `Product id '${id}' not found` };
-    }
-    return product;
+    return await model.findByPk(id, { raw: true });
   } catch (err) {
     throw err;
   }

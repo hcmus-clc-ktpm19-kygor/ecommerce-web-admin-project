@@ -2,7 +2,7 @@ const service = require('./orderService');
 
 exports.get = async (req, res) => {
   try {
-    const order = await service.get(req.params.id);
+    const order = await service.getById(req.params.id);
     res.json(order);
   } catch (err) {
     res.status(500).json({ message: err.message });

@@ -45,5 +45,4 @@ order
   .then(() => console.log("The table for the DON_HANG model was just created!"))
   .catch((error) => console.error(error.message));
 
-// Create customer model in db
 module.exports = order;

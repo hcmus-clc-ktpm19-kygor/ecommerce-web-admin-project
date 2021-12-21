@@ -1,11 +1,13 @@
-const model = require('./OrderDetailModel');
-const mongoose = require('mongoose');
+const model = require("./OrderDetailModel");
 
-exports.get = async (id) => {
+exports.getById = async (order_id, product_id) => {
   try {
-    const orderDetail = await model.findById(mongoose.Types.ObjectId.createFromHexString(id));
+    const orderDetail = await model.findOne({
+      where: { order_id, product_id },
+      raw: true,
+    });
     if (orderDetail === null) {
-      return {mess: `Product id '${id}' not found`};
+      return { mess: `Product id '${id}' not found` };
     }
     return orderDetail;
   } catch (err) {
@@ -15,47 +17,47 @@ exports.get = async (id) => {
 
 exports.getAll = async () => {
   try {
-    return await model.find();
+    return await model.findAll();
   } catch (err) {
     throw err;
   }
 };
 
 exports.insert = async (newOrderDetail) => {
-  const orderDetail = new model(newOrderDetail);
   try {
-    return await orderDetail.save();
+    await model.create(newOrderDetail);
   } catch (err) {
     throw err;
   }
-}
+};
 
 /**
  * Tim order detail bang id, update thong tin san pham ton tai trong database
  *
- * @param id
+ * @param order_id
+ * @param product_id
  * @param updateOrderDetail
- * @returns {Promise<{OrderDetail: model}>}
+ * @returns {Promise<[number, Model<TModelAttributes, TCreationAttributes>[]]>}
  */
-exports.update = async (id, updateOrderDetail) => {
+exports.update = async (order_id, product_id, updateOrderDetail) => {
   try {
-    return await model.findByIdAndUpdate(id, updateOrderDetail,
-        { new: true });
+    return await model.update(updateOrderDetail, {
+      where: { order_id, product_id },
+    });
   } catch (err) {
     throw err;
   }
-}
+};
 
 /**
  * Xoa order detail dang co trong database bang id
  *
- * @param id
- * @returns {Promise<{OrderDetail: model}>}
+ * @returns {Promise<number>}
  */
-exports.delete = async (id) => {
+exports.delete = async (order_id, product_id) => {
   try {
-    return await model.findByIdAndDelete(id);
+    return await model.destroy({ where: { order_id, product_id } });
   } catch (err) {
     throw err;
   }
-}
+};

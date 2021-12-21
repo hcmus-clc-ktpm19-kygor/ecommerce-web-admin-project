@@ -9,9 +9,9 @@ const discountService = require("../discount/discountService");
  * @param res respone
  * @returns {Promise<void>}
  */
-exports.get = async (req, res) => {
+exports.getById = async (req, res) => {
   try {
-    const product = await service.get(req.params.id);
+    const product = await service.getById(req.params.id);
     // const offers = await offerService.getAll();
     // const discounts = await discountService.getAll();
     // res.json(product);

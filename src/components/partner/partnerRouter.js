@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const controller = require('./partnerController');
 
+const { sequelize, DataTypes } = require("../../config/database.config");
+
 // GET Method
 router.get('/page', controller.paging);
 router.get('/add-partner', controller.renderAddPartner);

@@ -1,13 +1,11 @@
-const model = require('./orderModel');
-const mongoose = require('mongoose');
+const orderModel = require("./orderModel");
 
-exports.get = async (id) => {
+const orderDetailService = require('../OrderDetail/OrderDetailService');
+const productService = require('../product/productService');
+
+exports.getById = async (id) => {
   try {
-    const order = await model.findById(mongoose.Types.ObjectId.createFromHexString(id));
-    if (order === null) {
-      return {mess: `Order id '${req.params.id}' not found`};
-    }
-    return order;
+    return await orderModel.findByPk(id);
   } catch (err) {
     throw err;
   }
@@ -15,36 +13,40 @@ exports.get = async (id) => {
 
 exports.getAll = async () => {
   try {
-    return await model.find().lean();
+    return await orderModel.findAll({ raw: true });
   } catch (err) {
     throw err;
   }
 };
 
 exports.insert = async (newOrder) => {
-  const order = new model(newOrder);
   try {
-    return await order.save();
+    const orderDetail = await orderDetailService.getById(newOrder.order_id, newOrder.product_id);
+    const product = await productService.getById(orderDetail.product_id);
+
+    newOrder.price = orderDetail.quantity * product.price;
+
+    return await orderModel.create(newOrder);
   } catch (err) {
     throw err;
   }
-}
+};
 
 /**
  * Tim order bang id, update thong tin san pham ton tai trong database
  *
  * @param id
  * @param updateOrder
- * @returns {Promise<{order: model}>}
+ * @returns {Promise<[number, Model<TModelAttributes, TCreationAttributes>[]]>}
  */
 exports.update = async (id, updateOrder) => {
   try {
-    return await model.findByIdAndUpdate(id, updateOrder,
-        { new: true });
+    await orderModel.update(updateOrder, { where: { id } });
+    return await orderModel.findOne({ where: { id }, raw: true });
   } catch (err) {
     throw err;
   }
-}
+};
 
 /**
  * Xoa san pham dang co trong database bang id
@@ -54,8 +56,9 @@ exports.update = async (id, updateOrder) => {
  */
 exports.delete = async (id) => {
   try {
-    return await model.findByIdAndDelete(id);
+    await orderModel.destroy({ where: id });
+    return await orderModel.findOne({ where: { id }, raw: true });
   } catch (err) {
     throw err;
   }
-}
+};
