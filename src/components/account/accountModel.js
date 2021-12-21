@@ -22,6 +22,10 @@ const account = sequelize.define('TAI_KHOAN', {
     type: DataTypes.BOOLEAN,
     defaultValue: true
   },
+  role: {
+    field: '_ROLE',
+    type: DataTypes.STRING,
+  }
 }, { timestamps: false, freezeTableName: true });
 
 account.sync()

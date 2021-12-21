@@ -1,12 +1,12 @@
 const model = require('./accountModel');
 const bcrypt = require('bcrypt');
-const cloudinary = require('../../config/cloudinary.config');
 
 const adminService = require('../admin/adminService');
+const accountModel = require('./accountModel');
+const accountService = require("./accountService");
 
 /**
  * Lay 1 account len tu database bang id
- * @param id {@link mongoose.Types.ObjectId}
  * @returns {Promise<*|{mess: string}>}
  */
 module.exports.getById = async (id) => {
@@ -72,6 +72,28 @@ module.exports.insert = async (newAccount) => {
     throw err;
   }
 }
+
+exports.changePassword = async (id, newPassword) => {
+  try {
+    const { old_password, new_password, confirm_password } = newPassword;
+    const admin = await accountModel.findByPk(id);
+
+    const isPasswordValid = await accountService.validatePassword(admin.password, old_password);
+    if (!isPasswordValid) {
+      return "Mật khẩu cũ không hợp lệ";
+    }
+    if (new_password !== confirm_password) {
+      return "Xác nhận mật khẩu mới không hợp lệ";
+    }
+
+    await accountModel.update(
+      { password: await bcrypt.hash(new_password, 10) },
+      { where: { id } }
+    );
+  } catch (err) {
+    throw err;
+  }
+};
 
 /**
  * Cap nhat thong tin tai khoan co trong database

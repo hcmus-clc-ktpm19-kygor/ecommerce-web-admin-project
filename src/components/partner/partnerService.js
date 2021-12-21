@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const faker = require('faker');
 const ObjectId = require('mongoose').Types.ObjectId;
 
+const accountService = require('../account/accountService');
 const partnerService = require("./partnerService");
 
 const partnerModel = require('./partnerModel');
@@ -49,7 +50,7 @@ module.exports.validatePassword = async (userPassword, password) => {
  */
 module.exports.getAll = async () => {
   try {
-    return await partnerModel.find().lean();
+    return await partnerModel.findAll();
   } catch (err) {
     throw err;
   }
@@ -63,9 +64,14 @@ module.exports.getAll = async () => {
 exports.insert = async (newPartner) => {
   try {
     const rawPassword = faker.internet.password();
-
-    newPartner.username = newPartner.email;
-    newPartner.password = await bcrypt.hash(rawPassword, 10);
+    const password = await bcrypt.hash(rawPassword, 10);
+    const partnerAccount = {
+      _id: newPartner.id,
+      username: newPartner.email,
+      password,
+      role: 'DOI_TAC'
+    }
+    await accountModel.create(partnerAccount);
 
     const partner = partnerModel.build(newPartner);
     const addedPartner = await partner.save();

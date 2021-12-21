@@ -4,7 +4,7 @@ const controller = require('./partnerController');
 
 // GET Method
 router.get('/page', controller.paging);
-router.get('/add-partner', controller.renderAddAdmin);
+router.get('/add-partner', controller.renderAddPartner);
 router.get('/profile', controller.renderProfile);
 // router.get('/:id', controller.get);
 

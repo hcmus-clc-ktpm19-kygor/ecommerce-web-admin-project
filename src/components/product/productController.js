@@ -12,10 +12,10 @@ const discountService = require("../discount/discountService");
 exports.get = async (req, res) => {
   try {
     const product = await service.get(req.params.id);
-    const offers = await offerService.getAll();
-    const discounts = await discountService.getAll();
+    // const offers = await offerService.getAll();
+    // const discounts = await discountService.getAll();
     // res.json(product);
-    res.render('product/views/edit_product', { product , offers,  discounts });
+    res.render('product/views/edit_product', { product });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -39,10 +39,7 @@ exports.paging = async (req, res) => {
  */
 exports.renderAddProductPage = async (req, res) => {
   try {
-    const offers = await offerService.getAll();
-    const discounts = await discountService.getAll();
-    // res.json({ offers, discounts });
-    res.render('product/views/add_product', { offers,  discounts});
+    res.render('product/views/add_product');
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -95,7 +92,7 @@ exports.insert = async (req, res) => {
     // const products = await service.paging(req.query.page);
     // res.status(201).json(newProduct);
     // res.render('products', { products });
-    res.redirect('product/views/product/products');
+    res.redirect('/products');
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

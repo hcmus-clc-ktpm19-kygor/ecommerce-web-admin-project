@@ -18,11 +18,12 @@ passportConfig.use(new LocalStrategy(
 passportConfig.serializeUser(function(user, done) {
   done(null, {
     username: user.username,
+    role: user.role,
   });
 });
 
 passportConfig.deserializeUser(async function(user, done) {
-  done(null, user.username);
+  done(null, user);
 });
 
 module.exports = passportConfig;

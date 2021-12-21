@@ -39,8 +39,8 @@ exports.paging = async (req, res) => {
  * @param res response
  * @returns {Promise<void>}
  */
-exports.renderAddAdmin = (req, res) => {
-  res.render('partner/views/add_admin');
+exports.renderAddPartner = (req, res) => {
+  res.render('partner/views/add_partner');
 }
 
 /**
@@ -71,8 +71,8 @@ exports.renderProfile = async (req, res) => {
  */
 exports.insert = async (req, res) => {
   try {
-    const { admin, rawPassword } = await service.insert(req.body);
-    req.flash('success', `Password của ${admin.email}: ${rawPassword}`);
+    const { partner, rawPassword } = await service.insert(req.body);
+    req.flash('success', `Password của ${partner.email}: ${rawPassword}`);
     res.redirect('/partner/profile');
   } catch (err) {
     res.status(400).json({ message: err.message });

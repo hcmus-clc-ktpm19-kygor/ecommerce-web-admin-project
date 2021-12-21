@@ -1,4 +1,4 @@
-const model = require('./productModel');
+const model = require("./productModel");
 
 /**
  * Lay 1 product bang id <br>
@@ -9,9 +9,9 @@ const model = require('./productModel');
  */
 exports.get = async (id) => {
   try {
-    const product = await model.findById(id);
+    const product = await model.findByPk(id);
     if (product === null) {
-      return {mess: `Product id '${id}' not found`};
+      return { mess: `Product id '${id}' not found` };
     }
     return product;
   } catch (err) {
@@ -24,29 +24,29 @@ exports.get = async (id) => {
  * @param page
  * @returns {Promise<void>}
  */
-exports.paging = async (page) => {
-  try {
-    let perPage = 9; // số lượng sản phẩm xuất hiện trên 1 page
-    page = page || 1;
-
-    return await model
-    .find() // find tất cả các data
-    .skip((perPage * page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
-    .limit(perPage);
-  } catch (err) {
-    throw err;
-  }
-};
+// exports.paging = async (page) => {
+//   try {
+//     let perPage = 9; // số lượng sản phẩm xuất hiện trên 1 page
+//     page = page || 1;
+//
+//     return await model
+//       .find() // find tất cả các data
+//       .skip(perPage * page - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
+//       .limit(perPage);
+//   } catch (err) {
+//     throw err;
+//   }
+// };
 
 /**
  * Lay list cac san pham <br>
  * Nho them await vao truoc ham tra ve neu khong ham tra ve Promise
  *
- * @returns {Promise<[{product: model}]>}
+ * @returns {Promise<Model<TModelAttributes, TCreationAttributes>[]>}
  */
 exports.getAll = async () => {
   try {
-    return await model.find();
+    return await model.findAll();
   } catch (err) {
     throw err;
   }
@@ -56,24 +56,24 @@ exports.getAll = async () => {
  * Them san pham moi vao database va tra ve ket qua san pham da them <br>
  * Nho them await vao truoc ham tra ve neu khong ham tra ve Promise
  *
- * @param newProduct
  * @returns {Promise<{product: model}>}
+ * @param product
  */
-exports.insert = async (newProduct) => {
-  let { discount, offer } = newProduct;
-
-  discount = parseFloat(discount.split(':')[1].trim());
-
-  newProduct.discount = { rate: discount };
-  newProduct.offer = { content: offer };
-
-  const product = new model(newProduct);
+exports.insert = async (product) => {
   try {
-    return await product.save();
+    const currProduct = await model.findByPk(product._id);
+    if (currProduct) {
+      await model.update(
+        { stock: currProduct.stock + parseInt(product.stock) },
+        { where: { _id: product._id } }
+      );
+    } else {
+      await model.create(product);
+    }
   } catch (err) {
     throw err;
   }
-}
+};
 
 /**
  * Tim san pham bang id, update thong tin san pham ton tai trong database
@@ -84,30 +84,22 @@ exports.insert = async (newProduct) => {
  */
 exports.update = async (id, updateProduct) => {
   try {
-    let { discount, offer } = updateProduct;
-
-    discount = parseFloat(discount.split(':')[1].trim());
-
-    updateProduct.discount = { rate: discount };
-    updateProduct.offer = { content: offer };
-
-    return await model.findByIdAndUpdate(id, updateProduct,
-        { new: true });
+    await model.update(updateProduct, { where: { _id: id } });
   } catch (err) {
     throw err;
   }
-}
+};
 
 /**
  * Xoa san pham dang co trong database bang id
  *
  * @param id
- * @returns {Promise<{product: model}>}
+ * @returns {Promise<number>}
  */
 exports.delete = async (id) => {
   try {
-    return await model.findByIdAndDelete(id);
+    return await model.destroy({ where: { _id: id } });
   } catch (err) {
     throw err;
   }
-}
+};
