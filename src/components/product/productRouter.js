@@ -1,7 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('./productController');
-const {sequelize} = require("../../config/database.config");
+const { sequelize } = require("../../config/database.config");
+
+// Demo lỗi
+router.get("/dirty-read-error", async function (req, res) {
+  try {
+    await sequelize.query("EXEC sp_DIRTYREAD_TRAN1 'SP02', '1000'");
+    res.redirect("/products/SP02");
+  } catch (err) {
+    res.json({ mess: err.message });
+  }
+});
+router.get("/fix-dirty-read", async function (req, res) {
+  try {
+    await sequelize.query("EXEC sp_DIRTYREAD_FIX_TRAN1 'SP02', '1000'");
+    res.redirect("/products/SP02");
+  } catch (err) {
+    res.json({ mess: err.message });
+  }
+});
 
 // GET Method
 // Paging
@@ -17,12 +35,6 @@ router.get('/:id', controller.getById);
 router.post('/', controller.insert);
 
 // PUT Method
-router.put("/dirty-read-error", function (req, res) {
-  sequelize
-    .query("EXEC sp_DIRTYREAD_TRAN1 'SP02', '1000'")
-    .then((v) => res.json({message: v}))
-    .catch((err) => res.json({ message: err.message }));
-});
 router.put('/:id', controller.update);
 // router.put('/update', controller.update);
 
