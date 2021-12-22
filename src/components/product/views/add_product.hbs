@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="src/public/css/img.scss">
+<link rel="stylesheet" href="/css/upload-image.css">
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -14,7 +16,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <form action="/products" method="POST">
+        <form action="/products" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6">
                     <div class="card card-primary">
@@ -130,17 +132,17 @@
                             </div>
                         </div>
                     </div>
-                        <!-- /.card -->
+                    <!-- /.card -->
                 </div>
-                    <div class="col-md-6">
+                <div class="col-md-6">
                     <div class="row">
-                        <div class="card card-warning">
+                        <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">Giá cả</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                        title="Collapse">
+                                            title="Collapse">
                                         <i class="fas fa-minus"></i>
                                     </button>
                                 </div>
@@ -154,7 +156,7 @@
                                     <label for="inputDiscount">Mã khuyến mãi</label>
                                     <select class="custom-select rounded-0" id="inputDiscount" name="discount">
                                         {{#each discounts}}
-                                        <option>Phần trăm giảm giá: {{this.rate}}</option>
+                                            <option>Phần trăm giảm giá: {{this.rate}}</option>
                                         {{/each}}
                                     </select>
                                 </div>
@@ -162,7 +164,7 @@
                                     <label for="inputOffer">Mã ưu đãi</label>
                                     <select class="custom-select rounded-0" id="inputOffer" name="offer">
                                         {{#each offers}}
-                                        <option>{{this.content}}</option>
+                                            <option>{{this.content}}</option>
                                         {{/each}}
                                     </select>
                                 </div>
@@ -173,44 +175,58 @@
                     </div>
                     <div class="row-md-6">
 
-                        <div class="card card-success">
+                        <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">Hình ảnh sán phẩm</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                        title="Collapse">
+                                            title="Collapse">
                                         <i class="fas fa-minus"></i>
                                     </button>
                                 </div>
                             </div>
                             <div class="card-body">
-                               <div class="form-group">
-                                      <label for="Image" class="form-label">Tải hình ảnh sản phẩm</label>
-                                      <input class="form-control" type="file" id="formFile" onchange="preview()">
-                                      <img id="frame" src="" class="img-fluid" />
-                               </div>
-                           </div>
+                                <div class="form-group">
+<!--                                    <input class="form-control" type="file" id="formFile" onchange="preview()" multiple>-->
+<!--                                    <img id="frame" src="" class="img-fluid"/>-->
+                                    <div class="wrapper">
+                                        <header>Tải Hình Ảnh Sản Phẩm</header>
+                                        <span id="product-image-input" class="upload-form">
+                                            <input class="file-input" name="product-images" type="file"
+                                                   accept=".jpg,.jpeg,.png"
+                                                   hidden multiple>
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                            <p class="upload-p">Browse Files to Upload. Supports: JPG, JPEG, PNG.</p>
+                                        </span>
+                                        <section class="upload-selection progress-area"></section>
+                                        <section class="upload-selection uploaded-area"></section>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                <div class="row">
-                    <div class="col-12">
-                        <a href="/products" class="btn btn-secondary">Hủy</a>
-                        <input type="submit" value="Thêm sản phẩm" class="btn btn-success float-right">
-                    </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="/products" class="btn btn-secondary">Hủy</a>
+                    <input type="submit" value="Thêm sản phẩm" class="btn btn-success float-right">
+                </div>
+            </div>
         </form>
     </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script src="/js/uploadImageHandler.js"></script>
 <script>
-     function preview() {
-     frame.src = URL.createObjectURL(event.target.files[0]);
-     }
-     function clearImage() {
-     document.getElementById('formFile').value = null;
-     frame.src = "";
-     }
+    function preview() {
+        frame.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+    function clearImage() {
+        document.getElementById('formFile').value = null;
+        frame.src = "";
+    }
 </script>

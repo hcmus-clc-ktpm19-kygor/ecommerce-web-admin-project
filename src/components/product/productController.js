@@ -91,7 +91,7 @@ exports.getImage = async (req, res) => {
  */
 exports.insert = async (req, res) => {
   try {
-    await service.insert(req.body);
+    await service.insert(req.body, req.files);
     // const products = await service.paging(req.query.page);
     // res.status(201).json(newProduct);
     // res.render('products', { products });

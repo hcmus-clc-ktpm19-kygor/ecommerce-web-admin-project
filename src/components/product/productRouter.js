@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+
+const uploader = require('../../config/multer.config');
+
 const controller = require('./productController');
 
 // GET Method
@@ -13,7 +16,7 @@ router.get('/add-new-product', controller.renderAddProductPage);
 router.get('/:id', controller.get);
 
 // POST Method
-router.post('/', controller.insert);
+router.post('/', uploader.array('product-images', 10),controller.insert);
 
 // PUT Method
 router.put('/:id', controller.update);

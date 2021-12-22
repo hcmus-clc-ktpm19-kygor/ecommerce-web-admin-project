@@ -1,222 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aroma Shop | Menu</title>
-  <link rel="icon" href="/img/Fevicon.png" type="image/png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aroma Shop | Menu</title>
+    <link rel="icon" href="/img/Fevicon.png" type="image/png">
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.css">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/css/adminlte.css">
-  <!-- Custom css -->
-  <link rel="stylesheet" href="/css/custom.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/css/adminlte.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="/img/Fevicon.png" alt="ShopLogo" height="60" width="60">
-  </div>
-
-  <!-- Navbar -->
-  <nav class="main-header navbar-white navbar navbar-expand">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="padding-top: 5px;">
-          <div class="custom-toggle active">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/" class="nav-link font-weight-bold">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link font-weight-bold">Contact</a>
-      </li>
-    </ul>
-
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="/" class="brand-link">
-      <img src="/img/logo2.png" class="brand-image">
-      <span class="brand-text font-weight-bold">Aroma</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-           {{#if admin.avatar_url}}
-             <img class="img-circle elevation-2" src="{{admin.avatar_url}}" alt="User Image">
-           {{else}}
-             <img class="img-circle elevation-2" src="/img/user2-160x160.jpg" alt="User Image">
-           {{/if}}
-        </div>
-        <div class="info">
-          <a class="d-block">{{admin.username}}</a>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-bars"></i>
-              <p>
-                Thống kê
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/products" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Danh sách sản phẩm</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/order" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Danh sách đơn hàng</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="/products/gallery" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Hình ảnh sản phẩm
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/products/add-new-product" class="nav-link">
-              <i class="nav-icon far fa-plus-square"></i>
-              <p>
-                Thêm sản phẩm
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/admin/add-admin" class="nav-link">
-              <i class="nav-icon fas fa-user-shield"></i>
-                <p>
-                  Thêm tài khoản admin
-                </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/admin/profile" class="nav-link">
-               <i class="nav-icon fas fa-user"></i>
-                <p>
-                    Trang cá nhân
-                </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
+    <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center">
+        <img class="animation__wobble" src="/img/Fevicon.png" alt="ShopLogo" height="60" width="60">
     </div>
-    <!-- /.sidebar -->
-  </aside>
 
-  {{{body}}}
+    <!-- Navbar -->
+    <nav class="main-header navbar-white navbar navbar-expand">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button" style="padding-top: 5px;">
+                    <div class="custom-toggle active">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="/" class="nav-link font-weight-bold">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link font-weight-bold">Contact</a>
+            </li>
+        </ul>
 
-  <!-- Control Sidebar -->
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="/" class="brand-link">
+            <img src="/img/logo2.png" class="brand-image">
+            <span class="brand-text font-weight-bold">Aroma</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    {{#if admin.avatar_url}}
+                        <img class="img-circle elevation-2" src="{{admin.avatar_url}}" alt="User Image">
+                    {{else}}
+                        <img class="img-circle elevation-2" src="/img/user2-160x160.jpg" alt="User Image">
+                    {{/if}}
+                </div>
+                <div class="info">
+                    <a class="d-block">{{admin.username}}</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item menu-open">
+                        <a href="#" class="nav-link active">
+                            <i class="nav-icon fas fa-bars"></i>
+                            <p>
+                                Thống kê
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/products" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách sản phẩm</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/order" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách đơn hàng</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/products/gallery" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Hình ảnh sản phẩm
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/products/add-new-product" class="nav-link">
+                            <i class="nav-icon far fa-plus-square"></i>
+                            <p>
+                                Thêm sản phẩm
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/add-admin" class="nav-link">
+                            <i class="nav-icon fas fa-user-shield"></i>
+                            <p>
+                                Thêm tài khoản admin
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/profile" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Trang cá nhân
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    {{{body}}}
+
+    <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
+        <!-- Control sidebar content goes here -->
     </aside>
     <!-- /.control-sidebar -->
 
     <!-- Main Footer -->
     <footer class="main-footer">
-      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">Aroma Shop</a>.</strong>
-      All rights reserved.
-      <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.0.0-rc
-      </div>
+        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">Aroma Shop</a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Version</b> 1.0.0-rc
+        </div>
     </footer>
-  </div>
-  <!-- ./wrapper -->
+</div>
+<!-- ./wrapper -->
 
-  <!-- REQUIRED SCRIPTS -->
-  <!-- jQuery -->
-  <script src="/plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- overlayScrollbars -->
-  <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- Ekko Lightbox -->
-  <script src="/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
-  <!-- Filterizr-->
-  <script src="/plugins/filterizr/jquery.filterizr.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="/js/adminlte.js"></script>
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- Ekko Lightbox -->
+<script src="/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+<!-- Filterizr-->
+<script src="/plugins/filterizr/jquery.filterizr.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/js/adminlte.js"></script>
 {{!--   <!-- AdminLTE for demo purposes --> --}}
 {{!--   <script src="/js/demo.js"></script> --}}
 
-  <!-- PAGE PLUGINS -->
-  <!-- jQuery Mapael -->
-  <script src="/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-  <script src="/plugins/raphael/raphael.min.js"></script>
-  <script src="/plugins/jquery-mapael/jquery.mapael.min.js"></script>
-  <script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script>
-  <!-- ChartJS -->
-  <script src="/plugins/chart.js/Chart.min.js"></script>
-  <!-- DataTables  & Plugins -->
-  <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-  <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-  <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-  <script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-  <script src="/plugins/jszip/jszip.min.js"></script>
-  <script src="/plugins/pdfmake/pdfmake.min.js"></script>
-  <script src="/plugins/pdfmake/vfs_fonts.js"></script>
-  <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-  <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-  <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-  <script src="/js/custom.js"></script>
-  <!-- Page specific script -->
-  <script>
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script src="/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="/plugins/raphael/raphael.min.js"></script>
+<script src="/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<!-- ChartJS -->
+<script src="/plugins/chart.js/Chart.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="/plugins/jszip/jszip.min.js"></script>
+<script src="/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="/js/custom.js"></script>
+<!-- Page specific script -->
+<script>
     $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange":true, "autoWidth": true,
-        "paging": true, "searching": true, "ordering": false, "info": true,
-        "pagingType": "simple_numbers",
-        "buttons": ["copy", "csv", "excel", "pdf", "print"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $("#example2").DataTable({
-        "responsive": true, "lengthChange":true, "autoWidth": true,
-        "paging": false, "searching": true, "ordering": false, "info": true,
-        "pagingType": "simple_numbers",
-        "buttons": ["copy", "csv", "excel", "pdf", "print"]
-      }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": true, "autoWidth": true,
+            "paging": true, "searching": true, "ordering": false, "info": true,
+            "pagingType": "simple_numbers",
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $("#example2").DataTable({
+            "responsive": true, "lengthChange": true, "autoWidth": true,
+            "paging": false, "searching": true, "ordering": false, "info": true,
+            "pagingType": "simple_numbers",
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
     });
-   $(".custom-file-input").on("change", function() {
-     var fileName = $(this).val().split("\\").pop();
-     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-   });
-  </script>
-  </body>
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+</body>
 </html>

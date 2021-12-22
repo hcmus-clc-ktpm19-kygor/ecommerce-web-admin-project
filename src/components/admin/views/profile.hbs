@@ -23,15 +23,16 @@
                             <h3 class="card-title">Ảnh đại diện</h3>
                         </div>
                         <div class="card-body box-profile">
-                            <form action="/admin/change-avatar/{{admin._id}}?_method=PUT" enctype="multipart/form-data"
+                            <form action="/admin/change-avatar/{{admin._id}}?_method=PATCH"
+                                  enctype="multipart/form-data"
                                   method="POST">
                                 <div class="d-flex justify-content-center">
                                     <img class="card-img-top img-circle img-fluid"
                                          src="{{admin.avatar_url}}"
                                          alt="User profile picture"
                                          id="avatar">
-                                    <input id="image" name="avatar_url" style="display: none;" type="file"
-                                           accept=".jpg,.jpeg,.png">
+                                    <input id="image" name="avatar_url" type="file"
+                                           accept=".jpg,.jpeg,.png" hidden>
                                 </div>
 
                                 <h3 class="profile-username text-center">{{admin.username}}</h3>
@@ -39,7 +40,9 @@
                                 <p class="text-muted text-center">Quản trị viên</p>
 
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <button type="submit" class="btn btn-primary">Lưu Ảnh Đại Diện</button>
+                                    <button id="save-avatar-button" type="submit"
+                                            class="btn btn-primary" hidden>Lưu Ảnh Đại Diện
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -245,6 +248,7 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script src="/js/avatarHandler.js"></script>
 <script>
     var loadFile = function (event) {
         var output = document.getElementById('output');

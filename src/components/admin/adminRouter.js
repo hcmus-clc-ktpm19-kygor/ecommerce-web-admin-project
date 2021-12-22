@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const upload = require('../../config/multer.config');
+const uploader = require('../../config/multer.config');
+
 const controller = require('./adminController');
 
 // GET Method
@@ -16,10 +17,10 @@ router.post('/', controller.insert);
 
 // PUT Method
 router.put('/:id', controller.update);
-router.put('/change-avatar/:id', upload.single('avatar_url'), controller.changeAvatar);
 router.put('/change-password/:id', controller.changePassword);
 
 // PATCH Method
 router.patch('/:id', controller.banAdmin);
+router.patch('/change-avatar/:id', uploader.single('avatar_url'), controller.changeAvatar);
 
 module.exports = router;
