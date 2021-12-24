@@ -3,6 +3,7 @@ const router = express.Router();
 const controller = require("./orderController");
 const { sequelize } = require("../../config/database.config");
 const sql = require("mssql");
+const service = require("./orderService");
 
 // Demo lỗi
 router.get("/lost-update-error-trans-1", async function (req, res) {
@@ -94,13 +95,19 @@ router.get("/conversion-deadlock-error-trans-1", async function (req, res) {
     const request = new sql.Request();
     request.input("MA_TAI_XE", sql.VarChar, "TX01");
     request.input("MA_DON_HANG", sql.VarChar, "DH04");
-    request.execute("CONVERSION_DEADLOCK", function (err, results) {
+    request.execute("CONVERSION_DEADLOCK", async function (err, results) {
       console.log(results.returnValue);
+      let mess;
       if (results.returnValue === 1205) {
-        req.flash("deadlock_message", "CÓ DEADLOCK XẢY RA");
+        mess = "CÓ DEADLOCK XẢY RA";
       }
 
-      res.redirect("/order");
+      const orders = await service.getAll();
+      // res.json(orders);
+      res.render('order/views/order', {
+        orders,
+        deadlock_message: mess,
+      });
     });
   } catch (err) {
     res.json({ message: err.message });
@@ -131,13 +138,19 @@ router.get("/conversion-deadlock-error-trans-2", async function (req, res) {
     const request = new sql.Request();
     request.input("MA_TAI_XE", sql.VarChar, "TX04");
     request.input("MA_DON_HANG", sql.VarChar, "DH04");
-    request.execute("CONVERSION_DEADLOCK", function (err, results) {
+    request.execute("CONVERSION_DEADLOCK", async function (err, results) {
       console.log(results.returnValue);
+      let mess;
       if (results.returnValue === 1205) {
-        req.flash("deadlock_message", "CÓ DEADLOCK XẢY RA");
+        mess = "CÓ DEADLOCK XẢY RA";
       }
 
-      res.redirect("/order");
+      const orders = await service.getAll();
+      // res.json(orders);
+      res.render('order/views/order', {
+        orders,
+        deadlock_message: mess,
+      });
     });
   } catch (err) {
     res.json({ message: err.message });
