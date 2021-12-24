@@ -1,9 +1,17 @@
-const model = require('./accountModel');
-const bcrypt = require('bcrypt');
+const model = require("./accountModel");
+const bcrypt = require("bcrypt");
 
-const adminService = require('../admin/adminService');
-const accountModel = require('./accountModel');
+const adminService = require("../admin/adminService");
+const accountModel = require("./accountModel");
 const accountService = require("./accountService");
+
+module.exports.getAll = async () => {
+  try {
+    return await model.findAll({ raw: true });
+  } catch (err) {
+    throw err;
+  }
+};
 
 /**
  * Lay 1 account len tu database bang id
@@ -28,7 +36,7 @@ module.exports.getById = async (id) => {
  */
 module.exports.getByUsername = async (username) => {
   try {
-    return await model.findOne({ where: { username }});
+    return await model.findOne({ where: { username } });
   } catch (err) {
     throw err;
   }
@@ -42,7 +50,7 @@ module.exports.getByUsername = async (username) => {
  */
 module.exports.validatePassword = async (user, password) => {
   return await bcrypt.compare(password, user.password);
-}
+};
 
 /**
  * Them account moi vao database
@@ -51,7 +59,9 @@ module.exports.validatePassword = async (user, password) => {
  */
 module.exports.insert = async (newAccount) => {
   try {
-    const isExistedUsername = await model.findOne({ where: { username: newAccount.username } });
+    const isExistedUsername = await model.findOne({
+      where: { username: newAccount.username },
+    });
 
     if (isExistedUsername) {
       return null;
@@ -71,14 +81,17 @@ module.exports.insert = async (newAccount) => {
   } catch (err) {
     throw err;
   }
-}
+};
 
 exports.changePassword = async (id, newPassword) => {
   try {
     const { old_password, new_password, confirm_password } = newPassword;
     const admin = await accountModel.findByPk(id);
 
-    const isPasswordValid = await accountService.validatePassword(admin.password, old_password);
+    const isPasswordValid = await accountService.validatePassword(
+      admin.password,
+      old_password
+    );
     if (!isPasswordValid) {
       return "Mật khẩu cũ không hợp lệ";
     }
@@ -108,24 +121,22 @@ exports.update = async (id, updateUser, file) => {
     // Upload avatar len cloudinary
     let result;
     if (file) {
-      result = await cloudinary.uploader.upload(
-          file.path,
-          {
-            public_id: id,
-            folder: 'user_avatar',
-            use_filename: true
-          });
+      result = await cloudinary.uploader.upload(file.path, {
+        public_id: id,
+        folder: "user_avatar",
+        use_filename: true,
+      });
     }
 
     /*
-     Lay avatar url
-     Neu khong co avatar duoc up len, url bo trong
-    */
+         Lay avatar url
+         Neu khong co avatar duoc up len, url bo trong
+        */
     const { url } = result ?? "";
     // Update user's info
     updateUser.avatar_url = url;
-    return await model.update(updateUser, { where: { id }});
+    return await model.update(updateUser, { where: { id } });
   } catch (err) {
     throw err;
   }
-}
+};

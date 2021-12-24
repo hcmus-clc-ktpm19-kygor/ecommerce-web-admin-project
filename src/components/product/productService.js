@@ -1,5 +1,6 @@
 const model = require("./productModel");
 const { option } = require("handlebars-helpers/lib/misc");
+const {where} = require("sequelize");
 
 /**
  * Lay 1 product bang id <br>
@@ -17,25 +18,6 @@ exports.getById = async (id) => {
 };
 
 /**
- * Phan trang cac product, moi trang co toi da 5 product
- * @param page
- * @returns {Promise<void>}
- */
-// exports.paging = async (page) => {
-//   try {
-//     let perPage = 9; // số lượng sản phẩm xuất hiện trên 1 page
-//     page = page || 1;
-//
-//     return await model
-//       .find() // find tất cả các data
-//       .skip(perPage * page - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
-//       .limit(perPage);
-//   } catch (err) {
-//     throw err;
-//   }
-// };
-
-/**
  * Lay list cac san pham <br>
  * Nho them await vao truoc ham tra ve neu khong ham tra ve Promise
  *
@@ -44,6 +26,20 @@ exports.getById = async (id) => {
 exports.getAll = async () => {
   try {
     return await model.findAll();
+  } catch (err) {
+    throw err;
+  }
+};
+
+exports.getByPartner = async (partnerId, branchId) => {
+  try {
+    return await model.findOne({
+      where: {
+        tax_id: partnerId,
+        branch_id: branchId,
+      },
+      raw: true,
+    });
   } catch (err) {
     throw err;
   }

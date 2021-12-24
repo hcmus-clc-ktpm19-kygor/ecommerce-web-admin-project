@@ -1,4 +1,5 @@
-const service = require('./adminService');
+const adminService = require('./adminService');
+const accountService = require('../account/accountService');
 
 /**
  * Lay 1 customer len bang id
@@ -8,12 +9,24 @@ const service = require('./adminService');
  */
 exports.get = async (req, res) => {
   try {
-    const customer = await service.get(req.params.id);
+    const customer = await adminService.get(req.params.id);
     res.json(customer);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
+exports.renderProfile = async (req, res) => {
+  try {
+    const accounts = await accountService.getAll();
+    res.render("admin/views/profile", {
+      accounts,
+      deadlock_mess: req.flash("deadlock_message")[0]
+    });
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+}
 
 /**
  * Them 1 customer moi vao database
@@ -24,7 +37,7 @@ exports.get = async (req, res) => {
  */
 exports.insert = async (req, res) => {
   try {
-    const newCustomer = await service.insert(req.body);
+    const newCustomer = await adminService.insert(req.body);
     res.status(201).json(newCustomer);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -42,7 +55,7 @@ exports.update = async (req, res) => {
   try {
     req.session.passport.user = {
       ...req.session.passport.user,
-      ...await service.update(req.params.id, req.body)
+      ...await adminService.update(req.params.id, req.body)
     };
     // res.json(updatedCustomer);
     res.redirect(`/account/${req.params.id}`);
