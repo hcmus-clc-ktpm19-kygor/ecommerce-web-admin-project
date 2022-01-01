@@ -210,10 +210,21 @@
         var table = $("#example1").DataTable({
             "responsive": true, "lengthChange": true, "autoWidth": true,
             "paging": true, "searching": true, "ordering": true, "info": true,
-            "pagingType": "simple_numbers", "searchPanes":true
+            "pagingType": "simple_numbers","searchPanes": {
+                                                       "layout": 'columns-3'
+                                                   },
+                                                   "dom": 'Plfrtip',
+                                                   "columnDefs": [
+                                                       {
+                                                           "searchPanes": {
+                                                               show: true
+                                                           },
+                                                           "targets": [1, 2, 3]
+                                                       }
+                                                   ]
+
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        table.searchPanes.container().prependTo(table.table().container());
-        table.searchPanes.resizePanes();
+
         $("#example2").DataTable({
             "responsive": true, "lengthChange": true, "autoWidth": true,
             "paging": false, "searching": true, "ordering": false, "info": true,
