@@ -8,7 +8,7 @@ const controller = require('./productController');
 // GET Method
 // Paging
 // router.get('/', controller.paging);
-router.get('/gallery', controller.getImage);
+router.get('/gallery', controller.getImages);
 router.get('/', controller.getAll);
 // Render add new product page
 router.get('/add-new-product', controller.renderAddProductPage);

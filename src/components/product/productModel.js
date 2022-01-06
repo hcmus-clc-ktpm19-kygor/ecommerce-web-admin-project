@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
  */
 const productSchema = new Schema({
   // Schema attributes are defined here
-  name: { type: String },
+  name: String,
   CPU: String,
   RAM: String,
   disk: String,

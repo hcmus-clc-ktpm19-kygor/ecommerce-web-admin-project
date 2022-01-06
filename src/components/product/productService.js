@@ -53,6 +53,36 @@ exports.getAll = async () => {
   }
 };
 
+exports.getAllImages = async () => {
+  try {
+    const productsImages = [];
+    
+    for await (const product of model.find({}, { image_url: true, name: true }, { lean: true })) {
+      if (!product.image_url.startsWith("https://res.cloudinary.com")) {
+        const images = [];
+
+        await cloudinary.api.resources(
+          {
+            type: "upload",
+            prefix: product.image_url, // add your folder
+          },
+          function (error, result) {
+            const { resources } = result;
+            resources.forEach((e) => images.push(e.url));
+          }
+        );
+        productsImages.push({ _id: product._id, name: product.name, image_url: images })
+      } else {
+        productsImages.push({ _id: product._id, name: product.name, image_url: [product.image_url] });
+      }
+    }
+
+    return productsImages;
+  } catch (err) {
+    throw err;
+  }
+}
+
 /**
  * Them san pham moi vao database va tra ve ket qua san pham da them <br>
  * Nho them await vao truoc ham tra ve neu khong ham tra ve Promise

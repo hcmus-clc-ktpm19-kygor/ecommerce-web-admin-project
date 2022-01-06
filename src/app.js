@@ -47,7 +47,7 @@ app.use(flash());
 // Authentication middleware
 app.use('/', authRouter);
 
-// Secure middleware
+// Secure middlewares
 app.all('/*', loggedInGuard);
 
 // Store account

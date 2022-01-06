@@ -73,10 +73,11 @@ exports.getAll = async (req, res) => {
  * @param res response
  * @returns {Promise<void>}
  */
-exports.getImage = async (req, res) => {
+exports.getImages = async (req, res) => {
   try {
-    const products = await service.getAll();
-    res.render('gallery', { products });
+    const products_images = await service.getAllImages();
+    // res.json(products_images);
+    res.render('product/views/product_gallery', { products_images });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
