@@ -1,5 +1,5 @@
 const model = require('./orderModel');
-const mongoose = require('mongoose');
+const util = require("./orderUtil");
 
 exports.get = async (id) => {
   try {
@@ -20,6 +20,17 @@ exports.getAll = async () => {
     throw err;
   }
 };
+
+exports.getSales = async () => {
+  const orders = await model.find().lean();
+
+  const todaySales = util.getSalesByDay(orders);
+  const thisMonthSales = util.getSalesByMonth(orders);
+  const thisQuarterSales = util.getSalesByQuarter(orders);
+  const thisYearSales = util.getSalesByYear(orders);
+
+  return { todaySales, thisMonthSales, thisQuarterSales, thisYearSales };
+}
 
 exports.insert = async (newOrder) => {
   const order = new model(newOrder);

@@ -1,9 +1,9 @@
-const service = require('./orderService');
+const service = require("./orderService");
 
 exports.get = async (req, res) => {
   try {
     const order = await service.get(req.params.id);
-    res.render('order/views/edit_order', { order });
+    res.render("order/views/edit_order", { order });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -13,7 +13,17 @@ exports.getAll = async (req, res) => {
   try {
     const orders = await service.getAll();
     // res.json(orders);
-    res.render('order/views/order', { orders });
+    res.render("order/views/order", { orders });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.getSales = async (req, res) => {
+  try {
+    const sales = await service.getSales();
+    res.json(sales);
+    // res.render("index", { sales })
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -26,7 +36,7 @@ exports.insert = async (req, res) => {
   } catch (err) {
     res.stats(400).json({ message: err.message });
   }
-}
+};
 
 /**
  * Tim va Update order da co trong database tra ket qua neu thanh cong
@@ -38,11 +48,11 @@ exports.insert = async (req, res) => {
 exports.update = async (req, res) => {
   try {
     await service.update(req.params.id, req.body);
-    res.redirect('/order');
+    res.redirect("/order");
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
-}
+};
 
 /**
  * Tim va xoa order trong database
@@ -54,8 +64,8 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     await service.delete(req.params.id);
-    res.redirect('/order');
+    res.redirect("/order");
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-}
+};

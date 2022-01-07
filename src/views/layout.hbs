@@ -18,7 +18,8 @@
     <!-- Custom css -->
     <link rel="stylesheet" href="/css/custom.css">
     <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/af-2.3.7/b-2.1.1/cr-1.5.5/kt-2.6.4/r-2.2.9/rg-1.1.4/sb-1.3.0/sp-1.4.0/sl-1.3.4/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/bs4/dt-1.11.3/af-2.3.7/b-2.1.1/cr-1.5.5/kt-2.6.4/r-2.2.9/rg-1.1.4/sb-1.3.0/sp-1.4.0/sl-1.3.4/datatables.min.css"/>
 
 
 </head>
@@ -168,6 +169,7 @@
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
 <script src="/plugins/jquery/jquery.min.js"></script>
+
 <!-- Bootstrap -->
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- overlayScrollbars -->
@@ -202,7 +204,8 @@
 <script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/af-2.3.7/b-2.1.1/cr-1.5.5/kt-2.6.4/r-2.2.9/rg-1.1.4/sb-1.3.0/sp-1.4.0/sl-1.3.4/datatables.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs4/dt-1.11.3/af-2.3.7/b-2.1.1/cr-1.5.5/kt-2.6.4/r-2.2.9/rg-1.1.4/sb-1.3.0/sp-1.4.0/sl-1.3.4/datatables.min.js"></script>
 <script src="/js/custom.js"></script>
 <!-- Page specific script -->
 <script>
@@ -210,18 +213,18 @@
         var table = $("#example1").DataTable({
             "responsive": true, "lengthChange": true, "autoWidth": true,
             "paging": true, "searching": true, "ordering": true, "info": true,
-            "pagingType": "simple_numbers","searchPanes": {
-                                                       "layout": 'columns-1'
-                                                   },
-                                                   "dom": 'Plfrtip',
-                                                   "columnDefs": [
-                                                       {
-                                                           "searchPanes": {
-                                                               show: false
-                                                           },
-                                                           "targets": [1,2,3,4]
-                                                       }
-                                                   ]
+            "pagingType": "simple_numbers", "searchPanes": {
+                "layout": 'columns-1'
+            },
+            "dom": 'Plfrtip',
+            "columnDefs": [
+                {
+                    "searchPanes": {
+                        show: false
+                    },
+                    "targets": [1, 2, 3, 4]
+                }
+            ]
 
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 

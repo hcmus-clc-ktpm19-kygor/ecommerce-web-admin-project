@@ -6,6 +6,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');
+const cors = require("cors");
 
 const session = require('express-session');
 const passport = require("./config/passportconfig");
@@ -35,8 +36,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(methodOverride('_method', { methods: ['POST', 'GET'] }));
-
+app.use(methodOverride("_method", { methods: ["POST", "GET"] }));
+app.use(cors());
 
 // Passport middlewares
 app.use(session({ secret: process.env.SESSION_SECRET_KEY }));
@@ -48,7 +49,7 @@ app.use(flash());
 app.use('/', authRouter);
 
 // Secure middlewares
-app.all('/*', loggedInGuard);
+// app.all('/*', loggedInGuard);
 
 // Store account
 app.use(function (req, res, next) {

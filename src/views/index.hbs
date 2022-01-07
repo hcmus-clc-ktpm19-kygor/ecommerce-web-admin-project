@@ -22,9 +22,7 @@
 
                     <div class="info-box-content">
                       <span class="info-box-text">Tổng số đơn trong ngày</span>
-                      <span class="info-box-number">
-                        10
-                      </span>
+                      <span id="today-sales" class="info-box-number"></span>
                     </div>
                     <!-- /.info-box-content -->
                   </div>
@@ -36,8 +34,8 @@
                     <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-calendar-day"></i></span>
 
                     <div class="info-box-content">
-                      <span class="info-box-text">Tổng số đơn trong tuần</span>
-                      <span class="info-box-number">41,410</span>
+                      <span class="info-box-text">Tổng số đơn trong tháng</span>
+                      <span id="this-month-sales" class="info-box-number"></span>
                     </div>
                     <!-- /.info-box-content -->
                   </div>
@@ -53,8 +51,8 @@
                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-calendar-day"></i></span>
 
                     <div class="info-box-content">
-                      <span class="info-box-text">Tổng số đơn trong tháng</span>
-                      <span class="info-box-number">760</span>
+                      <span class="info-box-text">Tổng số đơn trong quý</span>
+                      <span id="this-quarter-sales" class="info-box-number"></span>
                     </div>
                     <!-- /.info-box-content -->
                   </div>
@@ -67,7 +65,7 @@
 
                     <div class="info-box-content">
                       <span class="info-box-text">Tổng số đơn trong năm</span>
-                      <span class="info-box-number">2,000</span>
+                      <span id="this-year-sales" class="info-box-number"></span>
                     </div>
                     <!-- /.info-box-content -->
                   </div>
@@ -270,3 +268,22 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    $.noConflict();
+    jQuery(document).ready(function(){
+        $.ajax({
+            url: 'http://localhost:8000/order/api/sales',
+            method: 'get',
+            dataType: 'json',
+            success: function(data) {
+                const { todaySales, thisMonthSales, thisQuarterSales, thisYearSales } = data;
+                document.getElementById("today-sales").innerText = todaySales;
+                document.getElementById("this-month-sales").innerText = thisMonthSales;
+                document.getElementById("this-quarter-sales").innerText = thisQuarterSales;
+                document.getElementById("this-year-sales").innerText = thisYearSales;
+            }
+        });
+    });
+</script>

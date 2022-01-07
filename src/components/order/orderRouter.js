@@ -3,8 +3,9 @@ const router = express.Router();
 const controller = require('./orderController');
 
 // GET Method
-router.get('/:id', controller.get);
+router.get("/api/sales", controller.getSales);
 router.get('/', controller.getAll);
+router.get('/:id', controller.get);
 
 // POST Method
 router.post('/', controller.insert);
