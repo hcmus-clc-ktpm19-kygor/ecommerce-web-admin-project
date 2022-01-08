@@ -230,10 +230,13 @@
 
         $("#example2").DataTable({
             "responsive": true, "lengthChange": true, "autoWidth": true,
-            "paging": false, "searching": true, "ordering": false, "info": true,
-            "pagingType": "simple_numbers",
-            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+            "paging": true, "searching": true, "ordering": true, "info": true,
+            "pagingType": "simple_numbers"
         }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+         $("#example3").DataTable({
+                    "responsive": true, "lengthChange": true, "autoWidth": true,
+                    "paging": false, "searching": false, "ordering": false, "info": true,
+         }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
     });
     $(".custom-file-input").on("change", function () {
         var fileName = $(this).val().split("\\").pop();
