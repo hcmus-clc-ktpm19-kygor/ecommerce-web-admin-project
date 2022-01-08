@@ -1,188 +1,252 @@
+<link rel="stylesheet" href="src/public/css/img.scss">
+<link rel="stylesheet" href="/css/upload-image.css">
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1>Điền thông tin sản phẩm</h1>
-        </div>
-      </div>
-    </div><!-- /.container-fluid -->
-  </section>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Điền thông tin sản phẩm</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
 
-  <!-- Main content -->
-  <section class="content">
-    <form action="/products/{{product._id}}?_method=PUT" method="POST">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">Thông tin cơ bản</h3>
+    <!-- Main content -->
+    <section class="content">
+        <form action="/products/{{product._id}}?_method=PUT" method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-warning">
+                        <div class="card-header">
+                            <h3 class="card-title">Thông tin cơ bản</h3>
 
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="form-group">
-                <label for="inputName">Loại sản phẩm</label>
-                <input value="{{product.category}}" type="text" id="inputName" name="category" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputName">Tên sản phẩm</label>
-                <input value="{{product.name}}" type="text" id="inputName" name="name" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputOrgin">Xuất sứ</label>
-                <input value="{{product.origin}}" type="text" id="inputOrgin" name="origin" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputOrgin">Bảo hành (tháng)</label>
-                <input value="{{product.insurance}}" type="text" id="inputOrgin" name="insurance" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputColor">Màu sắc</label>
-                <input value="{{product.color}}" type="text" id="inputColor" name="color" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputStock">Số lượng tồn</label>
-                <input value="{{product.stock}}" type="number" id="inputStock" name="stock" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputProducer">Nhà sản xuất</label>
-                <input value="{{product.producer}}" type="text" id="inputProducer" name="producer" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputCPU">CPU</label>
-                <input value="{{product.CPU}}" type="text" id="inputCPU" name="CPU" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputRAM">RAM</label>
-                <input value="{{product.RAM}}" type="text" id="inputRAM" name="RAM" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputCard">Card đồ họa</label>
-                <input value="{{product.graphic_card}}" type="text" id="inputCard" name="graphic_card" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputScreen">Màn hình</label>
-                <input value="{{product.screen}}" type="text" id="inputScreen" name="screen" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputPort">Cổng giao tiếp</label>
-                <input value="{{product.port}}" type="text" id="inputPort" name="port" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputRead">Đọc thẻ nhớ</label>
-                <input value="{{product.read_mem_card}}" type="text" id="inputRead" name="read_mem_card" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputCam">Webcam</label>
-                <input value="{{product.webcam}}" type="text" id="inputCam" name="webcam" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputWifi">Chuẩn Wifi</label>
-                <input value="{{product.WIFI}}" type="text" id="inputWifi" name="WIFI" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputBluetooth">Bluetooth</label>
-                <input value="{{product.bluetooth}}" type="text" id="inputBluetooth" name="bluetooth" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputOS">Hệ điều hành</label>
-                <input value="{{product.os}}" type="text" id="inputOS" name="os" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputPin">Pin</label>
-                <input value="{{product.pin}}" type="text" id="inputPin" name="pin" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputWeight">Trọng lượng</label>
-                <input value="{{product.weight}}" type="number" id="inputWeight" name="weight" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputSize">Kích thước</label>
-                <input value="{{product.size}}" type="text" id="inputSize" name="size" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputDisk">Ổ đĩa</label>
-                <input value="{{product.disk}}" type=text id="inputDisk" name="disk" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputOptDisk">Ổ đĩa quang</label>
-                <input value="{{product.optical_disk}}" type=text id="inputOptDisk" name="optical_disk" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputAudio">Audio</label>
-                <input value="{{product.audio}}" type=text id="inputAudio" name="audio" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputLAN">Chuẩn LAN</label>
-                <input value="{{product.LAN}}" type=text id="inputLAN" name="LAN" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputKeyboard">Bàn phím</label>
-                <input value="{{product.keyboard}}" type=text id="inputKeyboard" name="keyboard" class="form-control">
-              </div>
-              <!-- /.card-body -->
-            </div>
-          </div>
-          <!-- /.card -->
-        </div>
-        <div class="col-md-6">
-          <div class="card card-secondary">
-            <div class="card-header">
-              <h3 class="card-title">Giá cả</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="inputName">Loại sản phẩm</label>
+                                <input value="{{product.category}}" type="text" id="inputName" name="category"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName">Tên sản phẩm</label>
+                                <input value="{{product.name}}" type="text" id="inputName" name="name"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputOrgin">Xuất sứ</label>
+                                <input value="{{product.origin}}" type="text" id="inputOrgin" name="origin"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputOrgin">Bảo hành (tháng)</label>
+                                <input value="{{product.insurance}}" type="text" id="inputOrgin" name="insurance"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputColor">Màu sắc</label>
+                                <input value="{{product.color}}" type="text" id="inputColor" name="color"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputStock">Số lượng tồn</label>
+                                <input value="{{product.stock}}" type="number" id="inputStock" name="stock"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputProducer">Nhà sản xuất</label>
+                                <input value="{{product.producer}}" type="text" id="inputProducer" name="producer"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCPU">CPU</label>
+                                <input value="{{product.CPU}}" type="text" id="inputCPU" name="CPU"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputRAM">RAM</label>
+                                <input value="{{product.RAM}}" type="text" id="inputRAM" name="RAM"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCard">Card đồ họa</label>
+                                <input value="{{product.graphic_card}}" type="text" id="inputCard" name="graphic_card"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputScreen">Màn hình</label>
+                                <input value="{{product.screen}}" type="text" id="inputScreen" name="screen"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPort">Cổng giao tiếp</label>
+                                <input value="{{product.port}}" type="text" id="inputPort" name="port"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputRead">Đọc thẻ nhớ</label>
+                                <input value="{{product.read_mem_card}}" type="text" id="inputRead" name="read_mem_card"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCam">Webcam</label>
+                                <input value="{{product.webcam}}" type="text" id="inputCam" name="webcam"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputWifi">Chuẩn Wifi</label>
+                                <input value="{{product.WIFI}}" type="text" id="inputWifi" name="WIFI"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputBluetooth">Bluetooth</label>
+                                <input value="{{product.bluetooth}}" type="text" id="inputBluetooth" name="bluetooth"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputOS">Hệ điều hành</label>
+                                <input value="{{product.os}}" type="text" id="inputOS" name="os" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPin">Pin</label>
+                                <input value="{{product.pin}}" type="text" id="inputPin" name="pin"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputWeight">Trọng lượng</label>
+                                <input value="{{product.weight}}" type="number" id="inputWeight" name="weight"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputSize">Kích thước</label>
+                                <input value="{{product.size}}" type="text" id="inputSize" name="size"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDisk">Ổ đĩa</label>
+                                <input value="{{product.disk}}" type=text id="inputDisk" name="disk"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputOptDisk">Ổ đĩa quang</label>
+                                <input value="{{product.optical_disk}}" type=text id="inputOptDisk" name="optical_disk"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAudio">Audio</label>
+                                <input value="{{product.audio}}" type=text id="inputAudio" name="audio"
+                                       class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputLAN">Chuẩn LAN</label>
+                                <input value="{{product.LAN}}" type=text id="inputLAN" name="LAN" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputKeyboard">Bàn phím</label>
+                                <input value="{{product.keyboard}}" type=text id="inputKeyboard" name="keyboard"
+                                       class="form-control">
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Giá cả</h3>
 
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-              </div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                            title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="inputPrice">Giá niêm yết</label>
+                                    <input value="{{product.price}}" type="number" id="inputPrice" name="price"
+                                           class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDiscount">Mã khuyến mãi</label>
+                                    <select class="custom-select rounded-0" id="inputDiscount" name="discount">
+                                        {{!--                   <option selected>Phần trăm giảm giá: {{product.discount.rate}}</option> --}}
+                                        {{#each discounts}}
+                                            {{#if (is_equals ../product.discount.rate this.rate)}}
+                                                <option selected>Phần trăm giảm giá: {{this.rate}}</option>
+                                            {{else}}
+                                                <option>Phần trăm giảm giá: {{this.rate}}</option>
+                                            {{/if}}
+                                        {{/each}}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputOffer">Mã ưu đãi</label>
+                                    <select class="custom-select rounded-0" id="inputOffer" name="offer">
+                                        {{#each offers}}
+                                            <option>{{this.content}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                    <div class="row">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Hình ảnh sán phẩm</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                            title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <img class="card-img-top img-fluid"
+                                     src="{{product.image_url}}"
+                                     alt="User profile picture">
+                                <div class="form-group">
+                                    <div class="wrapper">
+                                        <header>Tải ảnh mới của sản phẩm </header>
+                                        <span id="product-image-input" class="upload-form">
+                                            <input class="file-input" name="product-images" type="file"
+                                                   accept=".jpg,.jpeg,.png"
+                                                   hidden>
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                            <p class="upload-p">Browse Files to Upload. Supports: JPG, JPEG, PNG.</p>
+                                        </span>
+                                        <section class="upload-selection progress-area"></section>
+                                        <section class="upload-selection uploaded-area"></section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-              <div class="form-group">
-                <label for="inputPrice">Giá niêm yết</label>
-                <input value="{{product.price}}" type="number" id="inputPrice" name="price" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputDiscount">Mã khuyến mãi</label>
-                <select class="custom-select rounded-0" id="inputDiscount" name="discount">
-{{!--                   <option selected>Phần trăm giảm giá: {{product.discount.rate}}</option> --}}
-                  {{#each discounts}}
-                    {{#if (is_equals ../product.discount.rate this.rate)}}
-                      <option selected>Phần trăm giảm giá: {{this.rate}}</option>
-                    {{else}}
-                      <option>Phần trăm giảm giá: {{this.rate}}</option>
-                    {{/if}}
-                  {{/each}}
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="inputOffer">Mã ưu đãi</label>
-                <select class="custom-select rounded-0" id="inputOffer" name="offer">
-                  {{#each offers}}
-                  <option>{{this.content}}</option>
-                  {{/each}}
-                </select>
-              </div>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <a href="/products" class="btn btn-secondary">Hủy</a>
-          <input type="submit" value="Cập nhật" class="btn btn-success float-right">
-        </div>
-      </div>
-    </form>
-  </section>
-  <!-- /.content -->
+                <div class="row">
+                    <div class="col-12">
+                        <a href="/products" class="btn btn-secondary">Hủy</a>
+                        <input type="submit" value="Cập nhật" class="btn btn-success float-right">
+                    </div>
+                </div>
+        </form>
+    </section>
+    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script src="/js/uploadImageHandler.js"></script>
