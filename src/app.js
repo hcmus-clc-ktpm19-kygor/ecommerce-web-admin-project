@@ -13,7 +13,7 @@ const passport = require("./config/passportconfig");
 const flash = require('connect-flash');
 
 const indexRouter = require('./routes/index');
-
+const apiRouter = require("./api/apiRouter");
 const authRouter = require('./components/auth/authRouter');
 const adminRouter = require('./components/admin/adminRouter');
 const orderRouter = require('./components/order/orderRouter');
@@ -59,6 +59,7 @@ app.use(function (req, res, next) {
 
 // Router middlewares
 app.use('/', indexRouter);
+app.use("/api", apiRouter);
 app.use('/products', productRouter);
 app.use('/order', orderRouter);
 app.use('/admin',adminRouter);

@@ -38,8 +38,8 @@
                   <tr>
                     <td>{{this.name}}</td>
                     <td>{{this.status}}</td>
-                    <td>{{this.price}}đ</td>
-                    <td>{{this.shipping_fee}}đ</td>
+                    <td>{{this.total_price}}</td>
+                    <td>{{this.shipping_fee}}</td>
                     <td>{{this.customer.phone}}</td>
                     <td class="project-actions text-md-center">
                       <form action="/order/{{this._id}}?_method=DELETE" method="POST">

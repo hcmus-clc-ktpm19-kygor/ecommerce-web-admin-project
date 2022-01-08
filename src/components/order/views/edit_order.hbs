@@ -51,7 +51,7 @@
                          </div>
                             <div class="form-group">
                                 <label for="inputPrice">Giá</label>
-                                <input type="text" id="inputPrice" name="price" class="form-control" value="{{order.price}}"  readonly>
+                                <input type="text" id="inputPrice" name="price" class="form-control" value="{{order.total_price}}"  readonly>
                             </div>
                             <div class="form-group">
                                 <label for="inputShip">Phí vận chuyển</label>
@@ -85,3 +85,7 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script>
+    const price = document.getElementById("inputPrice").value
+    document.getElementById("inputPrice").value = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+</script>

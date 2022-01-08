@@ -3,7 +3,7 @@ const router = express.Router();
 const controller = require('./orderController');
 
 // GET Method
-router.get("/api/sales", controller.getSales);
+// router.get("/api/sales", controller.getSales);
 router.get('/', controller.getAll);
 router.get('/:id', controller.get);
 

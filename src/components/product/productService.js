@@ -88,10 +88,10 @@ exports.getAllImages = async () => {
  * Nho them await vao truoc ham tra ve neu khong ham tra ve Promise
  *
  * @param newProduct
- * @param images
+ * @param image
  * @returns {Promise<{product: model}>}
  */
-exports.insert = async (newProduct, images) => {
+exports.insert = async (newProduct, image) => {
   try {
     // Lưu thông tin cơ bản của product
     let { discount, offer } = newProduct;
@@ -102,29 +102,19 @@ exports.insert = async (newProduct, images) => {
     newProduct.offer = { content: offer };
 
     const product = new model(newProduct);
-    const addedProduct = await product.save();
-
-    const id = addedProduct._id;
-    const folderName = `product_image/${newProduct.name}`;
-
+    let result;
     // Upload images
-    for (let i = 0; i < images.length; i++) {
-      if (images[i]) {
-        await cloudinary.uploader.upload(images[i].path, {
-          public_id: `${id}_${i}`,
-          folder: folderName,
-          use_filename: true,
-        });
-      }
+    if (image) {
+      result = await cloudinary.uploader.upload(image.path, {
+        public_id: product._id,
+        folder: "product_image",
+        use_filename: true,
+      });
     }
+    const { url } = result ?? "";
+    product.image_url = url;
 
-    /*
-     Lay image url
-     Neu khong co avatar duoc up len, url bo trong
-    */
-    await model
-        .findByIdAndUpdate(id, { image_url: folderName }, { new: true })
-        .lean();
+    await product.save();
   } catch (err) {
     throw err;
   }

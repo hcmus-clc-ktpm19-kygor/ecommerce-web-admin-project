@@ -16,7 +16,7 @@ router.get('/add-new-product', controller.renderAddProductPage);
 router.get('/:id', controller.get);
 
 // POST Method
-router.post('/', uploader.array('product-images', 10),controller.insert);
+router.post('/', uploader.single('product-images'),controller.insert);
 
 // PUT Method
 router.put('/:id', controller.update);

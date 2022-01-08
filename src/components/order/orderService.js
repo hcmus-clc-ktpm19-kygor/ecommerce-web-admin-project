@@ -15,7 +15,14 @@ exports.get = async (id) => {
 
 exports.getAll = async () => {
   try {
-    return await model.find().lean();
+    const orders = await model.find().lean();
+    orders.forEach(e => {
+      e.total_price = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(e.total_price);
+      e.shipping_fee = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(e.shipping_fee);
+      e.name = e.customer.customer_name;
+    })
+
+    return orders;
   } catch (err) {
     throw err;
   }
@@ -32,9 +39,20 @@ exports.getSales = async () => {
   return { todaySales, thisMonthSales, thisQuarterSales, thisYearSales };
 }
 
+exports.getTop10BestSeller = async () => {
+  const orders = await model
+    .find({}, { name: true, producer: true, price: true, createdAt: true })
+    .lean();
+}
+
 exports.insert = async (newOrder) => {
-  const order = new model(newOrder);
   try {
+    const { products } = newOrder;
+
+    const calculateTotalPrice = (prev, curr) => prev.price + curr.price;
+    newOrder.total_price = products.length === 1 ? products[0].price : products.reduce(calculateTotalPrice);
+    const order = new model(newOrder);
+
     return await order.save();
   } catch (err) {
     throw err;

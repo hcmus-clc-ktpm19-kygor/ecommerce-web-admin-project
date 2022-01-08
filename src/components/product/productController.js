@@ -92,11 +92,8 @@ exports.getImages = async (req, res) => {
  */
 exports.insert = async (req, res) => {
   try {
-    await service.insert(req.body, req.files);
-    // const products = await service.paging(req.query.page);
-    // res.status(201).json(newProduct);
-    // res.render('products', { products });
-    res.redirect('product/views/product/products');
+    await service.insert(req.body, req.file);
+    res.redirect('/products');
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -111,9 +108,7 @@ exports.insert = async (req, res) => {
  */
 exports.update = async (req, res) => {
   try {
-    const updatedProduct = await service.update(req.params.id, req.body);
-    // res.json(updatedProduct);
-    // res.render('edit_products', { updatedProduct });
+    await service.update(req.params.id, req.body);
     res.redirect('/products');
   } catch (err) {
     res.status(400).json({ message: err.message });

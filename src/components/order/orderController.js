@@ -19,16 +19,6 @@ exports.getAll = async (req, res) => {
   }
 };
 
-exports.getSales = async (req, res) => {
-  try {
-    const sales = await service.getSales();
-    res.json(sales);
-    // res.render("index", { sales })
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
-
 exports.insert = async (req, res) => {
   try {
     const newOrder = service.insert(req.body);
