@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("../../config/passportconfig");
+const passport = require("../../config/passport.config");
 const authController = require("./authController");
 
 // GET methods

@@ -128,6 +128,8 @@
                                                 </thead>
                                                 <tbody>
                                                 {{#each admins}}
+                                                    {{#if (eq this._id user)}}
+                                                    {{/if}}
                                                     <tr>
                                                         <td class="text-center">{{this.email}}</td>
                                                         <td class="text-center">{{this.name}}</td>

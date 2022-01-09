@@ -9,7 +9,7 @@ const methodOverride = require('method-override');
 const cors = require("cors");
 
 const session = require('express-session');
-const passport = require("./config/passportconfig");
+const passport = require("./config/passport.config");
 const flash = require('connect-flash');
 
 const indexRouter = require('./routes/index');
@@ -49,7 +49,7 @@ app.use(flash());
 app.use('/', authRouter);
 
 // Secure middlewares
-// app.all('/*', loggedInGuard);
+app.all('/*', loggedInGuard);
 
 // Store account
 app.use(function (req, res, next) {

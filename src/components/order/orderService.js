@@ -123,15 +123,18 @@ exports.insert = async (newOrder) => {
  * @param updateOrder
  * @returns {Promise<{order: model}>}
  */
-exports.update = async (id, updateOrder) => {
+exports.updateStatus = async (id, updateOrder) => {
   try {
-    return await orderModel.findByIdAndUpdate(id, updateOrder,
-        { new: true });
+    const { status } = updateOrder;
+    return await orderModel.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true }
+    );
   } catch (err) {
     throw err;
   }
 }
-
 /**
  * Xoa san pham dang co trong database bang id
  *

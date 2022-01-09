@@ -69,9 +69,11 @@ exports.paging = async (page) => {
  * Lay 1 list cac admin tu database
  * @returns {Promise<[account: model]>}
  */
-module.exports.getAll = async () => {
+module.exports.getAll = async (exceptId) => {
   try {
-    return await model.find().lean();
+    return await model
+      .find({ _id: { $nin: [ObjectId.createFromHexString(exceptId)] } })
+      .lean();
   } catch (err) {
     throw err;
   }
