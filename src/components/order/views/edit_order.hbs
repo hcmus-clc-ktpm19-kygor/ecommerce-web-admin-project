@@ -15,7 +15,7 @@
     <section class="content">
         <form action="/order/{{order._id}}?_method=PUT" method="POST">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Thông tin cơ bản</h3>
@@ -28,11 +28,12 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="inputName">Tên đơn hàng</label>
-                                <input type="text" id="inputName" name="name" class="form-control" value="{{order.name}}" readonly>
+                                <label for="inputCustomer">Tên khách hàng</label>
+                                <input type="text" id="inputCustomer" name="customer_name" class="form-control"
+                                       value="{{order.customer.customer_name}}" readonly>
                             </div>
-                        <div class="form-group">
-                             <label for="inputState">Trạng thái</label>
+                            <div class="form-group">
+                                <label for="inputState">Trạng thái</label>
                                 <select class="custom-select rounded-0" name="status" id="inputStatus">
                                     {{#if (is_equals order.status "Hoàn thành")}}
                                         <option selected value="Hoàn thành">Hoàn thành</option>
@@ -48,44 +49,82 @@
                                         <option selected value="Đang chờ">Đang chờ</option>
                                     {{/if}}
                                 </select>
-                         </div>
+                            </div>
                             <div class="form-group">
                                 <label for="inputPrice">Giá</label>
-                                <input type="text" id="inputPrice" name="price" class="form-control" value="{{order.total_price}}"  readonly>
+                                <input type="text" id="inputPrice" name="price" class="form-control"
+                                       value="{{order.total_price}}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="inputShip">Phí vận chuyển</label>
-                                <input type="number" id="inputShip" name="shipping_fee" class="form-control" value="{{order.shipping_fee}}"  readonly>
+                                <input type="number" id="inputShip" name="shipping_fee" class="form-control"
+                                       value="{{order.shipping_fee}}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="inputAddress">Địa chỉ</label>
-                                <input type="text" id="inputAddress" name="address" class="form-control" value="{{order.address}}"  readonly>
+                                <input type="text" id="inputAddress" name="address" class="form-control"
+                                       value="{{order.address}}" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="inputCustomer">Tên khách hàng</label>
-                                <input type="text" id="inputCustomer" name="customer_name" class="form-control" value="{{order.customer.customer_name}}"  readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPayment">Hình thức thanh toán</label >
-                                <input type="text" id="inputPayment" name="payment" class="form-control" value="{{order.payment}}"  readonly>
+                                <label for="inputPayment">Hình thức thanh toán</label>
+                                <input type="text" id="inputPayment" name="payment" class="form-control"
+                                       value="{{order.payment}}" readonly>
                             </div>
 
                         </div>
                     </div>
-                        <!-- /.card -->
-
-                <div class="row">
-                    <div class="col-12">
-                        <a href="/order" class="btn btn-secondary">Hủy</a>
-                        <input type="submit" value="Cập nhật" class="btn btn-success float-right">
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Danh sách sản phẩm</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example3" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#each order.products}}
+                                    <tr>
+                                        <td>{{@index}}</td>
+                                        <td>{{this.name}}</td>
+                                        <td>{{this.price}}</td>
+                                        <td>5</td>
+                                    </tr>
+                                {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
                 </div>
+                <!-- /.card -->
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="/order" class="btn btn-secondary">Hủy</a>
+                    <input type="submit" value="Cập nhật" class="btn btn-success float-right">
+                </div>
+            </div>
         </form>
+
     </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 <script>
     const price = document.getElementById("inputPrice").value
-    document.getElementById("inputPrice").value = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+    document.getElementById("inputPrice").value = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    }).format(price);
+</script>
+<script>
 </script>
