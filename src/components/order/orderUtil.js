@@ -1,4 +1,8 @@
 exports.getSalesByDay = function (orders) {
+    if (!orders) {
+        return 0;
+    }
+
     return orders.filter((order) => {
         const { createdAt } = order;
 
@@ -42,8 +46,4 @@ exports.getSalesByYear = function (orders) {
         const currentDate = new Date();
         return createdDate.getFullYear() === currentDate.getFullYear();
     }).length;
-}
-
-exports.getTop10BestSeller = function (orders) {
-    
 }

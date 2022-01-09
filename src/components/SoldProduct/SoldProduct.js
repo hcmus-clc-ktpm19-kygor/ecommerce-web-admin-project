@@ -6,10 +6,11 @@ const Schema = mongoose.Schema;
  */
 const soldProduct = new Schema({
     // Schema attributes are defined here
-    _id: mongoose.Types.ObjectId,
+    product_id: mongoose.Types.ObjectId,
     name: String,
     producer: String,
     quantity: Number,
+    total_price: Number,
 }, { timestamps: true, versionKey: false });
 
 

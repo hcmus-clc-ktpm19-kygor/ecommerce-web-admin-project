@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const orderSchema = new Schema( {
   // Schema attributes are defined here
-  products: Object,
+  products: Array,
   total_price: Number,
   status: String,
   shipping_fee: Number,

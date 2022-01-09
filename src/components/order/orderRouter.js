@@ -4,6 +4,7 @@ const controller = require('./orderController');
 
 // GET Method
 // router.get("/api/sales", controller.getSales);
+router.get("/best-seller", controller.getTop10BestSeller);
 router.get('/', controller.getAll);
 router.get('/:id', controller.get);
 

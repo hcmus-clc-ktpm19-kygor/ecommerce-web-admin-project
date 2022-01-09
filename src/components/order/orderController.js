@@ -19,6 +19,15 @@ exports.getAll = async (req, res) => {
   }
 };
 
+exports.getTop10BestSeller = async (req, res) => {
+  try {
+    const bestSeller = await service.getTop10BestSeller();
+    res.json(bestSeller);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}
+
 exports.insert = async (req, res) => {
   try {
     const newOrder = service.insert(req.body);

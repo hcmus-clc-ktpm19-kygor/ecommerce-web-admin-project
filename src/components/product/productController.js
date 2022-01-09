@@ -108,7 +108,7 @@ exports.insert = async (req, res) => {
  */
 exports.update = async (req, res) => {
   try {
-    await service.update(req.params.id, req.body);
+    await service.update(req.params.id, req.body, req.file);
     res.redirect('/products');
   } catch (err) {
     res.status(400).json({ message: err.message });

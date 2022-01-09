@@ -8,31 +8,31 @@ uploader.addEventListener("click", () => {
 });
 
 fileInput.onchange = ({ target }) => {
-  for (let i = 0; i < 10; i++) {
-    const file = target.files[i];
-    if (file) {
-      let fileName = file.name;
-      if (fileName.length >= 12) {
-        let splitName = fileName.split(".");
-        fileName = splitName[0].substring(0, 13) + "... ." + splitName[1];
-      }
+  const file = target.files[0];
+  if (file) {
+    let fileName = file.name;
+    if (fileName.length >= 12) {
+      let splitName = fileName.split(".");
+      fileName = splitName[0].substring(0, 13) + "... ." + splitName[1];
+    }
 
-      uploadedArea.classList.add("onprogress");
-      progressArea.innerHTML = "";
-      let uploadedHTML = `<li class="row">
+    uploadedArea.classList.add("onprogress");
+    progressArea.innerHTML = "";
+    let uploadedHTML = `<li class="row">
                             <div class="content upload">
                               <i class="fas fa-file-alt"></i>
                               <div class="details">
                                 <span class="name">${fileName} • Uploaded</span>
                                 <span class="size">${Math.floor(
-                                  file.size / 1024
-                                )}KB</span>
+        file.size / 1024
+    )}KB</span>
                               </div>
                             </div>
                             <i class="fas fa-check"></i>
                           </li>`;
-      uploadedArea.classList.remove("onprogress");
-      uploadedArea.insertAdjacentHTML("afterbegin", uploadedHTML);
-    }
+    uploadedArea.classList.remove("onprogress");
+    uploadedArea.insertAdjacentHTML("afterbegin", uploadedHTML);
+    document.getElementById("product_image").src = URL.createObjectURL(file);
+    document.getElementById("product_image").removeAttribute("hidden");
   }
 };

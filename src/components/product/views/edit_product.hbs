@@ -16,7 +16,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <form action="/products/{{product._id}}?_method=PUT" method="POST">
+        <form action="/products/{{product._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6">
                     <div class="card card-warning">
@@ -216,12 +216,12 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <img class="card-img-top img-fluid"
+                                <img id="product_image" class="card-img-top img-fluid"
                                      src="{{product.image_url}}"
                                      alt="User profile picture">
                                 <div class="form-group">
                                     <div class="wrapper">
-                                        <header>Tải ảnh mới của sản phẩm </header>
+                                        <header>Tải ảnh mới của sản phẩm</header>
                                         <span id="product-image-input" class="upload-form">
                                             <input class="file-input" name="product-images" type="file"
                                                    accept=".jpg,.jpeg,.png"
@@ -238,12 +238,12 @@
                     </div>
                 </div>
             </div>
-                <div class="row">
-                    <div class="col-12">
-                        <a href="/products" class="btn btn-secondary">Hủy</a>
-                        <input type="submit" value="Cập nhật" class="btn btn-success float-right">
-                    </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="/products" class="btn btn-secondary">Hủy</a>
+                    <input type="submit" value="Cập nhật" class="btn btn-success float-right">
                 </div>
+            </div>
         </form>
     </section>
     <!-- /.content -->

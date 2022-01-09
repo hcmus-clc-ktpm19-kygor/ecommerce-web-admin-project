@@ -127,7 +127,7 @@ exports.insert = async (newProduct, image) => {
  * @param updateProduct
  * @returns {Promise<{product: model}>}
  */
-exports.update = async (id, updateProduct) => {
+exports.update = async (id, updateProduct, image) => {
   try {
     let { discount, offer } = updateProduct;
 
@@ -135,6 +135,17 @@ exports.update = async (id, updateProduct) => {
 
     updateProduct.discount = { rate: discount };
     updateProduct.offer = { content: offer };
+
+    let result;
+    if (image) {
+      result = await cloudinary.uploader.upload(image.path, {
+        public_id: id,
+        folder: "product_image",
+        use_filename: true,
+      });
+    }
+    const { url } = result ?? "";
+    updateProduct.image_url = url;
 
     return await model.findByIdAndUpdate(id, updateProduct,
         { new: true });
