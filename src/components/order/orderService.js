@@ -41,7 +41,7 @@ exports.getSales = async () => {
 
 exports.getTop10BestSeller = async () => {
   const orders = await model
-    .find({}, { name: true, producer: true, price: true, createdAt: true })
+    .find({}, { products: true, createdAt: true })
     .lean();
 }
 
@@ -49,7 +49,7 @@ exports.insert = async (newOrder) => {
   try {
     const { products } = newOrder;
 
-    const calculateTotalPrice = (prev, curr) => prev.price + curr.price;
+    const calculateTotalPrice = (prev, curr) => prev.price * prev.quantity + curr.price * curr.quantity;
     newOrder.total_price = products.length === 1 ? products[0].price : products.reduce(calculateTotalPrice);
     const order = new model(newOrder);
 

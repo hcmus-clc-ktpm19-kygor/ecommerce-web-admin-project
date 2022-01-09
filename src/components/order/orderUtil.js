@@ -43,3 +43,7 @@ exports.getSalesByYear = function (orders) {
         return createdDate.getFullYear() === currentDate.getFullYear();
     }).length;
 }
+
+exports.getTop10BestSeller = function (orders) {
+    
+}
