@@ -44,9 +44,9 @@ exports.insert = async (req, res) => {
  * @param res response
  * @returns {Promise<void>}
  */
-exports.update = async (req, res) => {
+exports.updateStatus = async (req, res) => {
   try {
-    await service.update(req.params.id, req.body);
+    await service.updateStatus(req.params.id, req.body);
     res.redirect("/order");
   } catch (err) {
     res.status(400).json({ message: err.message });

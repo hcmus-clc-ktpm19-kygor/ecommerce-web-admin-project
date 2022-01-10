@@ -125,6 +125,7 @@ exports.insert = async (newProduct, image) => {
  *
  * @param id
  * @param updateProduct
+ * @param image
  * @returns {Promise<{product: model}>}
  */
 exports.update = async (id, updateProduct, image) => {

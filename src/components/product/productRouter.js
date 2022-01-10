@@ -16,10 +16,10 @@ router.get('/add-new-product', controller.renderAddProductPage);
 router.get('/:id', controller.get);
 
 // POST Method
-router.post('/', uploader.single('product-images'),controller.insert);
+router.post('/', uploader.single('product-images'), controller.insert);
 
 // PUT Method
-router.put('/:id', controller.update);
+router.put("/:id", uploader.single("product-images"), controller.update);
 // router.put('/update', controller.update);
 
 // DELETE Method

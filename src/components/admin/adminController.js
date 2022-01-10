@@ -51,7 +51,7 @@ exports.renderAddAdmin = (req, res) => {
 exports.renderProfile = async (req, res) => {
   try {
     const invalidPasswordMess = req.query['invalid-password'] ?? null;
-    const admins = await service.getAll();
+    const admins = await service.getAll(req.session.passport.user._id);
     res.render("admin/views/profile", {
       admins,
       ["invalid-password-mess"]: invalidPasswordMess,

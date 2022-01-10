@@ -13,7 +13,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <form action="/order/{{order._id}}?_method=PUT" method="POST">
+        <form action="/order/{{order._id}}?_method=PATCH" method="POST">
             <div class="row">
                 <div class="col-md-6">
                     <div class="card card-primary">
@@ -51,7 +51,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="inputPrice">Giá</label>
+                                <label for="inputPrice">Tổng đơn</label>
                                 <input type="text" id="inputPrice" name="price" class="form-control"
                                        value="{{order.total_price}}" readonly>
                             </div>
@@ -93,10 +93,10 @@
                                 <tbody>
                                 {{#each order.products}}
                                     <tr>
-                                        <td>{{@index}}</td>
+                                        <td>{{add @index 1}}</td>
                                         <td>{{this.name}}</td>
+                                        <td>{{this.quantity}}</td>
                                         <td>{{this.price}}</td>
-                                        <td>5</td>
                                     </tr>
                                 {{/each}}
                                 </tbody>
@@ -120,11 +120,9 @@
 </div>
 <!-- /.content-wrapper -->
 <script>
-    const price = document.getElementById("inputPrice").value
+    const price = parseFloat(document.getElementById("inputPrice").value);
     document.getElementById("inputPrice").value = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND'
     }).format(price);
-</script>
-<script>
 </script>

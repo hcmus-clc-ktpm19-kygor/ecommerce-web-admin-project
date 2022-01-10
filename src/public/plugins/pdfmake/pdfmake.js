@@ -9369,7 +9369,7 @@ __webpack_require__(2222);
         var hasher = this._hasher; // Reset
 
         hasher.reset();
-        hasher.update(this._iKey);
+        hasher.updateStatus(this._iKey);
       },
 
       /**
@@ -9385,7 +9385,7 @@ __webpack_require__(2222);
        *     hmacHasher.update(wordArray);
        */
       update: function update(messageUpdate) {
-        this._hasher.update(messageUpdate); // Chainable
+        this._hasher.updateStatus(messageUpdate); // Chainable
 
 
         return this;

@@ -16,7 +16,8 @@ hbs.registerHelper({
   },
   or() {
     return Array.prototype.slice.call(arguments, 0, -1).some(Boolean);
-  }
+  },
+  add: (v1, v2) => v1 + v2,
 });
 
 module.exports = hbs;

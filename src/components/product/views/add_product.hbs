@@ -32,19 +32,19 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="inputName">Loại sản phẩm</label>
-                                <input type="text" id="inputName" name="category" class="form-control">
+                                <input type="text" id="inputName" name="category" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Tên sản phẩm</label>
-                                <input type="text" id="inputName" name="name" class="form-control">
+                                <input type="text" id="inputName" name="name" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputOrgin">Xuất sứ</label>
-                                <input type="text" id="inputOrgin" name="origin" class="form-control">
+                                <input type="text" id="inputOrgin" name="origin" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputMaint">Bảo hành (tháng)</label>
-                                <input type="number" id="inputMaint" name="insurance" class="form-control">
+                                <input type="number" id="inputMaint" name="insurance" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputColor">Màu sắc</label>
@@ -52,27 +52,27 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputStock">Số lượng tồn</label>
-                                <input type="number" id="inputStock" name="stock" class="form-control">
+                                <input type="number" id="inputStock" name="stock" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputProducer">Nhà sản xuất</label>
-                                <input type="text" id="inputProducer" name="producer" class="form-control">
+                                <input type="text" id="inputProducer" name="producer" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputCPU">CPU</label>
-                                <input type="text" id="inputCPU" name="CPU" class="form-control">
+                                <input type="text" id="inputCPU" name="CPU" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputRAM">RAM</label>
-                                <input type="text" id="inputRAM" name="RAM" class="form-control">
+                                <input type="text" id="inputRAM" name="RAM" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputCard">Card đồ họa</label>
-                                <input type="text" id="inputCard" name="graphic_card" class="form-control">
+                                <input type="text" id="inputCard" name="graphic_card" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputScreen">Màn hình</label>
-                                <input type="text" id="inputScreen" name="screen" class="form-control">
+                                <input type="text" id="inputScreen" name="screen" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputPort">Cổng giao tiếp</label>
@@ -96,19 +96,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputOS">Hệ điều hành</label>
-                                <input type="text" id="inputOS" name="os" class="form-control">
+                                <input type="text" id="inputOS" name="os" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputPin">Pin</label>
-                                <input type="text" id="inputPin" name="pin" class="form-control">
+                                <input type="text" id="inputPin" name="pin" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputWeight">Trọng lượng</label>
-                                <input type="number" id="inputWeight" name="weight" class="form-control">
+                                <input type="number" id="inputWeight" name="weight" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputSize">Kích thước</label>
-                                <input type="text" id="inputSize" name="size" class="form-control">
+                                <input type="text" id="inputSize" name="size" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputDisk">Ổ đĩa</label>
@@ -150,7 +150,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="inputPrice">Giá niêm yết</label>
-                                    <input type="text" id="inputPrice" name="price" class="form-control">
+                                    <input type="number" id="inputPrice" name="price" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputDiscount">Mã khuyến mãi</label>
@@ -196,7 +196,7 @@
                                             <input id="product_image" class="file-input" name="product-images"
                                                    type="file"
                                                    accept=".jpg,.jpeg,.png"
-                                                   hidden>
+                                                   hidden required>
                                             <i class="fas fa-cloud-upload-alt"></i>
                                             <p class="upload-p">Browse Files to Upload. Supports: JPG, JPEG, PNG.</p>
                                         </span>
