@@ -8,7 +8,7 @@ exports.getSalesByDay = function (orders) {
 
         const createdDate = new Date(createdAt);
         const currentDate = new Date();
-        return createdDate.getDay() === currentDate.getDay();
+        return createdDate.getDate() === currentDate.getDate();
     }).length;
 }
 
