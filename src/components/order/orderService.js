@@ -45,7 +45,7 @@ exports.getSales = async () => {
 
 exports.getSalesInLast10Days = async () => {
   const result = [];
-  for (let i = 10; i > 0; i--) {
+  for (let i = 10; i >= 0; i--) {
     const d = new Date();
     d.setDate(d.getDate() - i);
 

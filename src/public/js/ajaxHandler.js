@@ -94,8 +94,7 @@ jQuery(document).ready(function () {
           maintainAspectRatio: false,
         },
       };
-
-      const myChart = new Chart(
+      new Chart(
           document.getElementById('salesChart'),
           config
       );
