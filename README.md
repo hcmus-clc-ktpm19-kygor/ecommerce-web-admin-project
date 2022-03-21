@@ -47,7 +47,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/namworkmc/Java-Dictionary-Application/blob/main/images/img.png?raw=true)
+[![Product Name Screen Shot][product-screenshot]](https://github.com/hcmus-clc-ktpm19-kygor/ecommerce-web-admin-project/blob/main/images/img.png?raw=true)
 
 Admin web application project. The project was built with HTML, CSS, JavaScript, Bootstrap, JQuery, Express,
 MongoDB.
