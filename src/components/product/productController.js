@@ -10,25 +10,25 @@ const discountService = require("../discount/discountService");
  * @returns {Promise<void>}
  */
 exports.get = async (req, res) => {
-  try {
-    const product = await service.get(req.params.id);
-    const offers = await offerService.getAll();
-    const discounts = await discountService.getAll();
-    // res.json(product);
-    res.render('product/views/edit_product', { product , offers,  discounts });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+    try {
+        const product = await service.get(req.params.id);
+        const offers = await offerService.getAll();
+        const discounts = await discountService.getAll();
+        // res.json(product);
+        res.render('product/views/edit_product', {product, offers, discounts});
+    } catch (err) {
+        res.status(500).json({message: err.message});
+    }
 };
 
 exports.paging = async (req, res) => {
-  try {
-    const products = await service.paging(req.query.page);
-    // res.json(products);
-    res.render('product/views/products', { products });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+    try {
+        const products = await service.paging(req.query.page);
+        // res.json(products);
+        res.render('product/views/products', {products});
+    } catch (err) {
+        res.status(500).json({message: err.message});
+    }
 }
 
 /**
@@ -38,14 +38,14 @@ exports.paging = async (req, res) => {
  * @returns {Promise<void>}
  */
 exports.renderAddProductPage = async (req, res) => {
-  try {
-    const offers = await offerService.getAll();
-    const discounts = await discountService.getAll();
-    // res.json({ offers, discounts });
-    res.render('product/views/add_product', { offers,  discounts});
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+    try {
+        const offers = await offerService.getAll();
+        const discounts = await discountService.getAll();
+        // res.json({ offers, discounts });
+        res.render('product/views/add_product', {offers, discounts});
+    } catch (err) {
+        res.status(500).json({message: err.message});
+    }
 }
 
 /**
@@ -56,14 +56,12 @@ exports.renderAddProductPage = async (req, res) => {
  * @returns {Promise<void>}
  */
 exports.getAll = async (req, res) => {
-  try {
-    const products = await service.getAll();
-    // res.json(products);
-    // res.render('products', { products });
-    res.render('product/views/products', { products });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+    try {
+        const products = await service.getAll();
+        res.render('product/views/products', {products});
+    } catch (err) {
+        res.status(500).json({message: err.message});
+    }
 };
 
 /**
@@ -74,13 +72,13 @@ exports.getAll = async (req, res) => {
  * @returns {Promise<void>}
  */
 exports.getImages = async (req, res) => {
-  try {
-    const products_images = await service.getAllImages();
-    // res.json(products_images);
-    res.render('product/views/product_gallery', { products_images });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+    try {
+        const products_images = await service.getAllImages();
+        // res.json(products_images);
+        res.render('product/views/product_gallery', {products_images});
+    } catch (err) {
+        res.status(500).json({message: err.message});
+    }
 };
 
 /**
@@ -91,12 +89,12 @@ exports.getImages = async (req, res) => {
  * @returns {Promise<void>}
  */
 exports.insert = async (req, res) => {
-  try {
-    await service.insert(req.body, req.file);
-    res.redirect('/products');
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
+    try {
+        await service.insert(req.body, req.file);
+        res.redirect('/products');
+    } catch (err) {
+        res.status(400).json({message: err.message});
+    }
 }
 
 /**
@@ -107,12 +105,12 @@ exports.insert = async (req, res) => {
  * @returns {Promise<void>}
  */
 exports.update = async (req, res) => {
-  try {
-    await service.update(req.params.id, req.body, req.file);
-    res.redirect('/products');
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
+    try {
+        await service.update(req.params.id, req.body, req.file);
+        res.redirect('/products');
+    } catch (err) {
+        res.status(400).json({message: err.message});
+    }
 }
 
 /**
@@ -123,12 +121,12 @@ exports.update = async (req, res) => {
  * @returns {Promise<void>}
  */
 exports.delete = async (req, res) => {
-  try {
-    await service.delete(req.params.id);
-    // const products = await service.paging(req.query.page);
-    // res.render('products', { products });
-    res.redirect('/products');
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+    try {
+        await service.delete(req.params.id);
+        // const products = await service.paging(req.query.page);
+        // res.render('products', { products });
+        res.redirect('/products');
+    } catch (err) {
+        res.status(500).json({message: err.message});
+    }
 }
